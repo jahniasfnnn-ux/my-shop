@@ -1,0 +1,86 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+body {
+    background-color: #121212;
+    color: #ffffff;
+}
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 5%;
+    background-color: #1a1a1a;
+    border-bottom: 1px solid #333;
+}
+header .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #e50914;
+}
+header nav a {
+    color: #ffffff;
+    text-decoration: none;
+    margin-right: 20px;
+    font-size: 16px;
+    transition: color 0.3s;
+}
+header nav a:hover {
+    color: #e50914;
+}
+.hero {
+    text-align: center;
+    padding: 100px 20px;
+    background: linear-gradient(135deg, #e50914 0%, #121212 100%);
+}
+.hero h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+.hero p {
+    font-size: 20px;
+    margin-bottom: 30px;
+    color: #ccc;
+}
+.btn {
+    background-color: #ffffff;
+    color: #e50914;
+    border: none;
+    padding: 12px 30px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+.btn:hover {
+    transform: scale(1.05);
+}
+.stats {
+    display: flex;
+    justify-content: space-around;
+    padding: 50px 5%;
+    background-color: #1a1a1a;
+    margin: 20px auto;
+    max-width: 1200px;
+    border-radius: 10px;
+}
+.stat-card {
+    text-align: center;
+    background-color: #262626;
+    padding: 20px;
+    border-radius: 8px;
+    width: 25%;
+    border-bottom: 4px solid #e50914;
+}
+.stat-card h3 {
+    font-size: 32px;
+    color: #e50914;
+    margin-bottom: 10px;
+}
+.stat-card p {
+    color: #aaa;
+}
