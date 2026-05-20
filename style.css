@@ -84,3 +84,17 @@ header nav a:hover {
 .stat-card p {
     color: #aaa;
 }
+/* ضبط حجم صور الألعاب داخل الكروت */
+.cat-image {
+    width: auto;
+    height: 55px; /* حجم مناسب جداً لشاشات الموبايل */
+    object-fit: contain;
+    margin-bottom: 10px;
+}
+
+.card-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 60px;
+}
