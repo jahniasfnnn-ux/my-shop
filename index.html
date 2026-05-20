@@ -3,155 +3,97 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WD BEIN | متجر حسابات الألعاب</title>
-    <link rel="stylesheet" href="style.css?v=7">
+    <title>متجر الحسابات الاحترافي</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- مكتبة أيقونات FontAwesome لشكل احترافي -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body>
+<body class="dark-theme"> <!-- الوضع الداكن مفعل تلقائياً كوضع أساسي -->
+
+    <!-- شريط التنقل العلوي -->
     <header>
-        <div class="logo">WD BEIN</div>
+        <div class="logo"><i class="fa-solid fa-gamepad"></i> متجر الحسابات</div>
         <nav>
-            <a href="#" onclick="showCategory('all')">الرئيسية</a>
-            <a href="#categories">الأقسام</a>
-            <a href="#products" onclick="showCategory('all')">كل الحسابات</a>
+            <button id="theme-toggle" class="btn-icon"><i class="fa-solid fa-sun"></i></button>
+            <button id="cart-btn" class="btn-icon">
+                <i class="fa-solid fa-shopping-cart"></i>
+                <span id="cart-count">0</span>
+            </button>
         </nav>
     </header>
 
+    <!-- بانر ترحيبي متحرك -->
     <section class="hero">
-        <h1>أقوى حسابات الألعاب بين يديك</h1>
-        <p>احصل على حسابات مشحونة وجاهزة للجلد في ببجي، فري فاير، وفيفا بأفضل الأسعار!</p>
-        <a href="#products" onclick="showCategory('all')" class="btn" style="text-decoration:none; display:inline-block;">تصفح جميع الحسابات 🎮</a>
-    </section>
-
-    <section class="stats">
-        <div class="stat-card">
-            <h3>3</h3>
-            <p>أقسام رئيسية</p>
-        </div>
-        <div class="stat-card">
-            <h3>متوفر</h3>
-            <p>تسليم فوري</p>
-        </div>
-        <div class="stat-card">
-            <h3>100%</h3>
-            <p>آمن ومضمون</p>
+        <div class="hero-content">
+            <h1>أقوى حسابات الألعاب بأفضل الأسعار</h1>
+            <p>تسليم فوري، دعم متواصل، وضمان كامل على كافة الحسابات.</p>
         </div>
     </section>
 
-    <section class="categories-section" id="categories">
-        <div class="section-title">
-            <h2>اختر لعبتك المفضلة</h2>
-            <p>اضغط على عرض الحسابات لتشاهد منتجات هذا القسم فقط</p>
+    <!-- أزرار التصفية الفورية -->
+    <section class="filter-section">
+        <button class="filter-btn active" data-filter="all">الكل</button>
+        <button class="filter-btn" data-filter="fc">FC Mobile</button>
+        <button class="filter-btn" data-filter="siege">Rainbow Six</button>
+    </section>
+
+    <!-- معرض المنتجات والحسابات -->
+    <main class="products-container">
+        <!-- حساب 1 -->
+        <div class="product-card" data-category="fc">
+            <div class="badge">مميز</div>
+            <h3>حساب FC Mobile أسطوري</h3>
+            <p class="price">150 $</p>
+            <p class="desc">تشكيلة قوية مع لاعبين طاقات +100 وجاهز للمنافسة فوراً.</p>
+            <button class="add-to-cart-btn" onclick="addToCart('حساب FC Mobile أسطوري', 150)">
+                <i class="fa-solid fa-cart-plus"></i> إضافة للسلة
+            </button>
         </div>
-        
-        <div class="categories-container">
-            <div class="game-banner-card" style="background-image: linear-gradient(to top, rgba(18,18,18,0.95) 30%, rgba(18,18,18,0.3) 100%), url('https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=600');">
-                <div class="banner-content">
-                    <span class="game-tag">PUBG Mobile</span>
-                    <h3>ببجي موبايل</h3>
-                    <p>حسابات مشحونة، كونكر، ومثك نادر جاهز للجلد</p>
-                    <a href="#products" onclick="showCategory('pubg')" class="btn-banner">عرض الحسابات 🎮</a>
-                </div>
-            </div>
 
-            <div class="game-banner-card" style="background-image: linear-gradient(to top, rgba(18,18,18,0.95) 30%, rgba(18,18,18,0.3) 100%), url('https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=600');">
-                <div class="banner-content">
-                    <span class="game-tag">Free Fire</span>
-                    <h3>فري فاير</h3>
-                    <p>حسابات فاير باس قديم وسكنات نادرة وهيدشوت</p>
-                    <a href="#products" onclick="showCategory('freefire')" class="btn-banner">عرض الحسابات 🔥</a>
-                </div>
-            </div>
+        <!-- حساب 2 -->
+        <div class="product-card" data-category="siege">
+            <h3>حساب Rainbow Six Siege</h3>
+            <p class="price">90 $</p>
+            <p class="desc">ليفل عالٍ، يحتوي على سكنات نادرة والعديد من الـ Operators المفتوحين.</p>
+            <button class="add-to-cart-btn" onclick="addToCart('حساب Rainbow Six Siege', 90)">
+                <i class="fa-solid fa-cart-plus"></i> إضافة للسلة
+            </button>
+        </div>
+    </main>
 
-            <div class="game-banner-card" style="background-image: linear-gradient(to top, rgba(18,18,18,0.95) 30%, rgba(18,18,18,0.3) 100%), url('https://images.unsplash.com/photo-1508098682722-e99c43a406b2?q=80&w=600');">
-                <div class="banner-content">
-                    <span class="game-tag">FC Mobile</span>
-                    <h3>فيفا / FC Mobile</h3>
-                    <p>تشكيلات أسطورية مجهزة بملايين الكوينز</p>
-                    <a href="#products" onclick="showCategory('fc')" class="btn-banner">عرض الحسابات ⚽</a>
-                </div>
+    <!-- قسم تقييمات وآراء العملاء الجديد -->
+    <section class="reviews-section">
+        <h2><i class="fa-solid fa-star text-gold"></i> آراء عملائنا وعشاق الألعاب</h2>
+        <div class="reviews-grid">
+            <div class="review-card">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p>"أفضل متجر تعاملت معه، التسليم سريع جداً والحساب مطابق للوصف بالملي!"</p>
+                <h4>- أحمد الكناني</h4>
+            </div>
+            <div class="review-card">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p>"الدعم الفني متعاون لأبعد الحدود وسعر الحساب أرخص من كل المواقع."</p>
+                <h4>- محمد مصطفى</h4>
             </div>
         </div>
     </section>
 
-    <section class="products-section" id="products">
-        <div class="section-title">
-            <h2 id="product-section-title">كل الحسابات المتوفرة</h2>
-            <p>اختر حسابك المفضل واضغط شراء للتواصل الفوري عبر الواتساب</p>
+    <!-- نافذة السلة الجانبية (تظهر عند الضغط على السلة) -->
+    <div id="cart-sidebar" class="cart-sidebar">
+        <div class="cart-header">
+            <h3>سلة المشتريات</h3>
+            <button id="close-cart" class="btn-icon"><i class="fa-solid fa-xmark"></i></button>
         </div>
-
-        <div class="products-container">
-            
-            <div class="product-card" data-category="pubg">
-                <div class="product-badge">ببجي ميثك</div>
-                <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=400" alt="حساب ببجي" class="product-img">
-                <div class="product-info">
-                    <h3>حساب ببجي ليفل 75 (ام فور ثلجي)</h3>
-                    <p class="product-desc">الحساب مشحون من السيزون 12، يحتوي على إم فور الثلجي ليفل 4، و سكنات ميثك أسطورية.</p>
-                    <div class="product-meta">
-                        <span class="price">60$</span>
-                        <span class="status">متوفر</span>
-                    </div>
-                    <a href="https://wa.me/249900863926?text=مرحباً%20WD%20BEIN،%20أريد%20شراء%20حساب:%20ببجي%20ليفل%2075%20إم%20فور%20ثلجي%20-%20السعر:%2060$" target="_blank" class="btn-buy">شراء عبر الواتساب 💬</a>
-                </div>
-            </div>
-
-            <div class="product-card" data-category="freefire">
-                <div class="product-badge">فري فاير</div>
-                <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=400" alt="حساب فري فاير" class="product-img">
-                <div class="product-info">
-                    <h3>حساب فري فاير سكنات قديمة</h3>
-                    <p class="product-desc">حساب ليفل 62، يحتوي على الجاكت الأسود النادر، الفاير باص القديم مفتوح كامل.</p>
-                    <div class="product-meta">
-                        <span class="price">30$</span>
-                        <span class="status">متوفر</span>
-                    </div>
-                    <a href="https://wa.me/249900863926?text=مرحباً%20WD%20BEIN،%20أريد%20شراء%20حساب:%20فري%20فاير%20سكنات%20قديمة%20-%20السعر:%2030$" target="_blank" class="btn-buy">شراء عبر الواتساب 💬</a>
-                </div>
-            </div>
-
-            <div class="product-card" data-category="fc">
-                <div class="product-badge">FC Mobile</div>
-                <img src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?q=80&w=400" alt="حساب فيفا" class="product-img">
-                <div class="product-info">
-                    <h3>حساب FC Mobile تشكيلة أوفر 132</h3>
-                    <p class="product-desc">تشكيلة خرافية تضم الظاهرة رونالدو والملك ميسي نسخة التوتس، مع 80 مليون كوينز كاش.</p>
-                    <div class="product-meta">
-                        <span class="price">45$</span>
-                        <span class="status">متوفر</span>
-                    </div>
-                    <a href="https://wa.me/249900863926?text=مرحباً%20WD%20BEIN،%20أريد%20شراء%20حساب:%20FC%20Mobile%20أوفر%20132%20-%20السعر:%2045$" target="_blank" class="btn-buy">شراء عبر الواتساب 💬</a>
-                </div>
-            </div>
-
+        <div id="cart-items" class="cart-items">
+            <!-- المنتجات المضافة ستظهر هنا تلقائياً -->
+            <p class="empty-msg">السلة فارغة حالياً</p>
         </div>
-    </section>
+        <div class="cart-footer">
+            <div class="total-price">الإجمالي: <span id="cart-total">0</span> $</div>
+            <button id="checkout-btn" onclick="checkoutToWhatsApp()"><i class="fa-brands fa-whatsapp"></i> إرسال الطلب عبر الواتساب</button>
+        </div>
+    </div>
 
-    <script>
-        function showCategory(category) {
-            // جلب كل كروت المنتجات
-            const cards = document.querySelectorAll('.product-card');
-            const title = document.getElementById('product-section-title');
-            
-            // تغيير عنوان القسم حسب الاختيار
-            if(category === 'pubg') {
-                title.innerText = "حسابات ببجي موبايل المتاحة";
-            } else if(category === 'freefire') {
-                title.innerText = "حسابات فري فاير المتاحة";
-            } else if(category === 'fc') {
-                title.innerText = "حسابات فيفا / FC Mobile المتاحة";
-            } else {
-                title.innerText = "كل الحسابات المتوفرة";
-            }
-
-            // إظهار أو إخفاء الكروت بناءً على القسم المحدد
-            cards.forEach(card => {
-                if (category === 'all' || card.getAttribute('data-category') === category) {
-                    card.style.display = 'block'; // إظهار
-                } else {
-                    card.style.display = 'none'; // إخفاء
-                }
-            });
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
