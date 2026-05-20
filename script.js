@@ -1,3 +1,4 @@
+
 document.addEventListener("DOMContentLoaded", () => {
     const themeToggle = document.getElementById('theme-toggle');
     const cartBtn = document.getElementById('cart-btn');
@@ -7,11 +8,8 @@ document.addEventListener("DOMContentLoaded", () => {
     if(themeToggle) {
         themeToggle.addEventListener('click', () => {
             document.body.classList.toggle('dark-theme');
-            const icon = themeToggle.querySelector('i');
-            icon.className = document.body.classList.contains('dark-theme') ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
         });
     }
-
     if(cartBtn) cartBtn.addEventListener('click', () => cartSidebar.classList.add('open'));
     if(closeCart) closeCart.addEventListener('click', () => cartSidebar.classList.remove('open'));
 
@@ -29,65 +27,55 @@ document.addEventListener("DOMContentLoaded", () => {
             let img = document.getElementById('prod-image').value || 'https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=600';
 
             let customProducts = JSON.parse(localStorage.getItem('custom_products')) || [];
-            const newProduct = { name, price, desc, category, img };
-            customProducts.push(newProduct);
+            customProducts.push({ name, price, desc, category, img });
             localStorage.setItem('custom_products', JSON.stringify(customProducts));
             
             adminForm.reset();
             renderCustomProducts();
             setupFilters();
-            alert('تم نشر الحساب بنجاح في المتجر!');
+            alert('تم نشر الحساب بنجاح!');
         });
     }
 });
 
-// فتح لوحة التحكم عند الضغط على اسم المتجر فوق وكتابة 1234
 function checkAdminAccess() {
-    let password = prompt("أدخل الرمز السري للأدمن لفتح لوحة التحكم:");
+    let password = prompt("أدخل الرمز السري للأدمن:");
     if (password === "1234") {
-        const panel = document.getElementById('admin-panel');
-        if(panel) {
-            panel.style.display = 'block';
-            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
-        }
+        document.getElementById('admin-panel').style.display = 'block';
+        window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
     } else if (password !== null) {
         alert("الرمز السري خاطئ!");
     }
 }
 
 function logoutAdmin() {
-    const panel = document.getElementById('admin-panel');
-    if(panel) panel.style.display = 'none';
+    document.getElementById('admin-panel').style.display = 'none';
 }
 
 function renderCustomProducts() {
-    const dynamicItems = document.querySelectorAll('.custom-card');
-    dynamicItems.forEach(item => item.remove());
-
+    document.querySelectorAll('.custom-card').forEach(item => item.remove());
     const grid = document.getElementById('products-grid');
     if(!grid) return;
 
     let customProducts = JSON.parse(localStorage.getItem('custom_products')) || [];
-    
     customProducts.forEach((prod, index) => {
         const card = document.createElement('div');
         card.className = 'product-card custom-card';
         card.setAttribute('data-category', prod.category);
         card.style.backgroundImage = `linear-gradient(to bottom, rgba(19, 26, 33, 0.85), rgba(11, 12, 16, 0.95)), url('${prod.img}')`;
-        
         card.innerHTML = `
             <h3>${prod.name}</h3>
             <p class="price">${prod.price} $</p>
             <p class="desc">${prod.desc}</p>
             <button class="add-to-cart-btn" onclick="addToCart('${prod.name}', ${prod.price})"><i class="fa-solid fa-cart-plus"></i> إضافة للسلة</button>
-            <button class="delete-admin-btn" onclick="deleteProduct(${index})"><i class="fa-solid fa-trash"></i> حذف من المتجر</button>
+            <button class="delete-admin-btn" onclick="deleteProduct(${index})" style="background:#ff4757;color:#fff;border:none;padding:5px;width:100%;border-radius:4px;margin-top:5px;"><i class="fa-solid fa-trash"></i> حذف الحساب</button>
         `;
         grid.appendChild(card);
     });
 }
 
 function deleteProduct(index) {
-    if(confirm('هل أنت متأكد من حذف هذا الحساب؟')) {
+    if(confirm('حذف الحساب؟')) {
         let customProducts = JSON.parse(localStorage.getItem('custom_products')) || [];
         customProducts.splice(index, 1);
         localStorage.setItem('custom_products', JSON.stringify(customProducts));
@@ -99,78 +87,39 @@ function deleteProduct(index) {
 let cart = [];
 function addToCart(name, price) {
     cart.push({ name, price });
-    updateCartUI();
-}
-
-function updateCartUI() {
     document.getElementById('cart-count').innerText = cart.length;
-    const cartItemsContainer = document.getElementById('cart-items');
-    if(!cartItemsContainer) return;
-    
-    cartItemsContainer.innerHTML = '';
-
-    if (cart.length === 0) {
-        cartItemsContainer.innerHTML = '<p class="empty-msg">السلة فارغة حالياً</p>';
-        document.getElementById('cart-total').innerText = '0';
-        return;
-    }
-
+    const container = document.getElementById('cart-items');
+    container.innerHTML = '';
     let total = 0;
     cart.forEach((item, index) => {
         total += item.price;
-        const itemEl = document.createElement('div');
-        itemEl.style.display = 'flex';
-        itemEl.style.justify = 'space-between';
-        itemEl.style.marginBottom = '10px';
-        itemEl.innerHTML = `
-            <span>${item.name}</span>
-            <span>${item.price} $ <i class="fa-solid fa-trash" style="color:#ff4757; cursor:pointer;" onclick="removeFromCart(${index})"></i></span>
-        `;
-        cartItemsContainer.appendChild(itemEl);
+        const div = document.createElement('div');
+        div.style.display = 'flex';
+        div.style.justify = 'space-between';
+        div.style.marginBottom = '10px';
+        div.innerHTML = `<span>${item.name}</span><span>${item.price} $</span>`;
+        container.appendChild(div);
     });
     document.getElementById('cart-total').innerText = total;
 }
 
-function removeFromCart(index) {
-    cart.splice(index, 1);
-    updateCartUI();
-}
-
 function checkoutToWhatsApp() {
-    if (cart.length === 0) {
-        alert('السلة فارغة!');
-        return;
-    }
-    let phoneNumber = "249900863926"; 
-    let message = "مرحباً متجر الحسابات، أريد شراء:\n\n";
+    if (cart.length === 0) return alert('السلة فارغة!');
+    let msg = "طلب شراء حسابات:\n";
     let total = 0;
-    cart.forEach((item, index) => {
-        message += `${index + 1}. ${item.name} - ${item.price} $\n`;
-        total += item.price;
-    });
-    message += `\nالإجمالي: ${total} $\nأرجو تزويدي بتفاصيل الدفع.`;
-    window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
+    cart.forEach((item, i) => { msg += `${i+1}. ${item.name} - ${item.price} $\n`; total += item.price; });
+    msg += `\nالإجمالي: ${total} $`;
+    window.open(`https://wa.me/249900863926?text=${encodeURIComponent(msg)}`, '_blank');
 }
 
 function setupFilters() {
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    filterButtons.forEach(button => {
-        button.replaceWith(button.cloneNode(true));
-    });
-
-    const newFilterButtons = document.querySelectorAll('.filter-btn');
-    newFilterButtons.forEach(button => {
-        button.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
             document.querySelector('.filter-btn.active').classList.remove('active');
-            button.classList.add('active');
-            const filterValue = button.getAttribute('data-filter');
-            
+            btn.classList.add('active');
+            const val = btn.getAttribute('data-filter');
             document.querySelectorAll('.product-card').forEach(card => {
-                if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
-                }
+                card.style.display = (val === 'all' || card.getAttribute('data-category') === val) ? 'block' : 'none';
             });
         });
     });
