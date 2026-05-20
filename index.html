@@ -4,27 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WD BEIN | متجر حسابات الألعاب</title>
-    <link rel="stylesheet" href="style.css?v=6">
+    <link rel="stylesheet" href="style.css?v=7">
 </head>
 <body>
     <header>
         <div class="logo">WD BEIN</div>
         <nav>
-            <a href="#">الرئيسية</a>
+            <a href="#" onclick="showCategory('all')">الرئيسية</a>
             <a href="#categories">الأقسام</a>
-            <a href="#products">المنتجات</a>
+            <a href="#products" onclick="showCategory('all')">كل الحسابات</a>
         </nav>
     </header>
 
     <section class="hero">
         <h1>أقوى حسابات الألعاب بين يديك</h1>
-        <p>احصل على حسابات مشحونة وجاهزة للجلد في ببجي، فري فاير، بيس وفيفا بأفضل الأسعار!</p>
-        <a href="#products" class="btn" style="text-decoration:none; display:inline-block;">تصفح الحسابات الآن 🎮</a>
+        <p>احصل على حسابات مشحونة وجاهزة للجلد في ببجي، فري فاير، وفيفا بأفضل الأسعار!</p>
+        <a href="#products" onclick="showCategory('all')" class="btn" style="text-decoration:none; display:inline-block;">تصفح جميع الحسابات 🎮</a>
     </section>
 
     <section class="stats">
         <div class="stat-card">
-            <h3>4</h3>
+            <h3>3</h3>
             <p>أقسام رئيسية</p>
         </div>
         <div class="stat-card">
@@ -40,34 +40,34 @@
     <section class="categories-section" id="categories">
         <div class="section-title">
             <h2>اختر لعبتك المفضلة</h2>
-            <p>تصفح الحسابات المتاحة وحلق في الصدارة</p>
+            <p>اضغط على عرض الحسابات لتشاهد منتجات هذا القسم فقط</p>
         </div>
         
         <div class="categories-container">
-            <div class="game-banner-card" style="background-image: linear-gradient(to top, rgba(18,18,18,0.95) 30%, rgba(18,18,18,0.3) 100%), url('https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=600&auto=format&fit=crop');">
+            <div class="game-banner-card" style="background-image: linear-gradient(to top, rgba(18,18,18,0.95) 30%, rgba(18,18,18,0.3) 100%), url('https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=600');">
                 <div class="banner-content">
                     <span class="game-tag">PUBG Mobile</span>
                     <h3>ببجي موبايل</h3>
                     <p>حسابات مشحونة، كونكر، ومثك نادر جاهز للجلد</p>
-                    <a href="#products" class="btn-banner">عرض الحسابات 🎮</a>
+                    <a href="#products" onclick="showCategory('pubg')" class="btn-banner">عرض الحسابات 🎮</a>
                 </div>
             </div>
 
-            <div class="game-banner-card" style="background-image: linear-gradient(to top, rgba(18,18,18,0.95) 30%, rgba(18,18,18,0.3) 100%), url('https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=600&auto=format&fit=crop');">
+            <div class="game-banner-card" style="background-image: linear-gradient(to top, rgba(18,18,18,0.95) 30%, rgba(18,18,18,0.3) 100%), url('https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=600');">
                 <div class="banner-content">
                     <span class="game-tag">Free Fire</span>
                     <h3>فري فاير</h3>
                     <p>حسابات فاير باس قديم وسكنات نادرة وهيدشوت</p>
-                    <a href="#products" class="btn-banner">عرض الحسابات 🔥</a>
+                    <a href="#products" onclick="showCategory('freefire')" class="btn-banner">عرض الحسابات 🔥</a>
                 </div>
             </div>
 
-            <div class="game-banner-card" style="background-image: linear-gradient(to top, rgba(18,18,18,0.95) 30%, rgba(18,18,18,0.3) 100%), url('https://images.unsplash.com/photo-1508098682722-e99c43a406b2?q=80&w=600&auto=format&fit=crop');">
+            <div class="game-banner-card" style="background-image: linear-gradient(to top, rgba(18,18,18,0.95) 30%, rgba(18,18,18,0.3) 100%), url('https://images.unsplash.com/photo-1508098682722-e99c43a406b2?q=80&w=600');">
                 <div class="banner-content">
                     <span class="game-tag">FC Mobile</span>
                     <h3>فيفا / FC Mobile</h3>
                     <p>تشكيلات أسطورية مجهزة بملايين الكوينز</p>
-                    <a href="#products" class="btn-banner">عرض الحسابات ⚽</a>
+                    <a href="#products" onclick="showCategory('fc')" class="btn-banner">عرض الحسابات ⚽</a>
                 </div>
             </div>
         </div>
@@ -75,18 +75,18 @@
 
     <section class="products-section" id="products">
         <div class="section-title">
-            <h2>الحسابات المتوفرة للبيع</h2>
+            <h2 id="product-section-title">كل الحسابات المتوفرة</h2>
             <p>اختر حسابك المفضل واضغط شراء للتواصل الفوري عبر الواتساب</p>
         </div>
 
         <div class="products-container">
             
-            <div class="product-card">
+            <div class="product-card" data-category="pubg">
                 <div class="product-badge">ببجي ميثك</div>
                 <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=400" alt="حساب ببجي" class="product-img">
                 <div class="product-info">
                     <h3>حساب ببجي ليفل 75 (ام فور ثلجي)</h3>
-                    <p class="product-desc">الحساب مشحون من السيزون 12، يحتوي على إم فور الثلجي ليفل 4، و سكنات ميثك أسطورية، وجاهز للتسليم الفوري.</p>
+                    <p class="product-desc">الحساب مشحون من السيزون 12، يحتوي على إم فور الثلجي ليفل 4، و سكنات ميثك أسطورية.</p>
                     <div class="product-meta">
                         <span class="price">60$</span>
                         <span class="status">متوفر</span>
@@ -95,12 +95,12 @@
                 </div>
             </div>
 
-            <div class="product-card">
+            <div class="product-card" data-category="freefire">
                 <div class="product-badge">فري فاير</div>
                 <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=400" alt="حساب فري فاير" class="product-img">
                 <div class="product-info">
                     <h3>حساب فري فاير سكنات قديمة</h3>
-                    <p class="product-desc">حساب ليفل 62، يحتوي على الجاكت الأسود النادر، الفاير باص القديم مفتوح كامل، والرقصات الأساسية متوفرة.</p>
+                    <p class="product-desc">حساب ليفل 62، يحتوي على الجاكت الأسود النادر، الفاير باص القديم مفتوح كامل.</p>
                     <div class="product-meta">
                         <span class="price">30$</span>
                         <span class="status">متوفر</span>
@@ -109,12 +109,12 @@
                 </div>
             </div>
 
-            <div class="product-card">
+            <div class="product-card" data-category="fc">
                 <div class="product-badge">FC Mobile</div>
                 <img src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?q=80&w=400" alt="حساب فيفا" class="product-img">
                 <div class="product-info">
                     <h3>حساب FC Mobile تشكيلة أوفر 132</h3>
-                    <p class="product-desc">تشكيلة خرافية تضم الظاهرة رونالدو والملك ميسي نسخة التوتس، مع 80 مليون كوينز كاش بالرصيد.</p>
+                    <p class="product-desc">تشكيلة خرافية تضم الظاهرة رونالدو والملك ميسي نسخة التوتس، مع 80 مليون كوينز كاش.</p>
                     <div class="product-meta">
                         <span class="price">45$</span>
                         <span class="status">متوفر</span>
@@ -126,6 +126,32 @@
         </div>
     </section>
 
-    <script src="script.js"></script>
+    <script>
+        function showCategory(category) {
+            // جلب كل كروت المنتجات
+            const cards = document.querySelectorAll('.product-card');
+            const title = document.getElementById('product-section-title');
+            
+            // تغيير عنوان القسم حسب الاختيار
+            if(category === 'pubg') {
+                title.innerText = "حسابات ببجي موبايل المتاحة";
+            } else if(category === 'freefire') {
+                title.innerText = "حسابات فري فاير المتاحة";
+            } else if(category === 'fc') {
+                title.innerText = "حسابات فيفا / FC Mobile المتاحة";
+            } else {
+                title.innerText = "كل الحسابات المتوفرة";
+            }
+
+            // إظهار أو إخفاء الكروت بناءً على القسم المحدد
+            cards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'block'; // إظهار
+                } else {
+                    card.style.display = 'none'; // إخفاء
+                }
+            });
+        }
+    </script>
 </body>
 </html>
