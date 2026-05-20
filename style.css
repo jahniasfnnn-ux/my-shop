@@ -270,3 +270,57 @@ header {
     align-items: center;
     gap: 8px;
 }
+/* تنسيق لوحة تحكم الأدمن الجديدة */
+.admin-panel {
+    background-color: var(--header-bg);
+    border: 2px dashed var(--accent-color);
+    border-radius: 12px;
+    padding: 20px;
+    margin: 30px 0;
+}
+.admin-panel h2 {
+    color: var(--accent-color);
+    font-size: 18px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+.admin-panel input, .admin-panel select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 12px;
+    background-color: var(--bg-color);
+    border: 1px solid var(--primary-color);
+    color: var(--text-color);
+    border-radius: 6px;
+}
+.admin-submit-btn {
+    background-color: var(--accent-color);
+    color: #000;
+    border: none;
+    padding: 12px;
+    width: 100%;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.admin-logout-btn {
+    background: none;
+    border: none;
+    color: #ff4757;
+    margin-top: 10px;
+    width: 100%;
+    cursor: pointer;
+    font-size: 14px;
+}
+/* زر الحذف السريع للحسابات المضافة للأدمن فقط */
+.delete-admin-btn {
+    background-color: #ff4757;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 5px;
+    font-size: 12px;
+    width: 100%;
+}
