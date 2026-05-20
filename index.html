@@ -8,17 +8,20 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body class="dark-theme">
-
+<nav>
     <header>
         <div class="logo" onclick="checkAdminAccess()"><i class="fa-solid fa-gamepad"></i> متجر الحسابات</div>
-        <nav>
+        
+       <header>
+       <div class="logo" onclick="checkAdminAccess()"><i class="fa-solid fa-gamepad"></i> متجر الحسابات</div>
+     <nav>
+        <a href="charge.html" style="color: var(--text-color); text-decoration: none; margin-left: 15px; font-size: 14px;"><i class="fa-solid fa-bolt"></i> شحن الألعاب</a>
+            <a href="ai.html" style="color: var(--accent-color); text-decoration: none; margin-left: 15px; font-weight: bold; font-size: 14px;"><i class="fa-solid fa-robot"></i> مساعد AI</a>
             <button id="theme-toggle" class="btn-icon"><i class="fa-solid fa-sun"></i></button>
-            <button id="cart-btn" class="btn-icon">
-                <i class="fa-solid fa-shopping-cart"></i>
-                <span id="cart-count">0</span>
-            </button>
+            <button id="cart-btn" class="btn-icon"><i class="fa-solid fa-shopping-cart"></i><span id="cart-count">0</span></button>
         </nav>
-    </header>
+  </header>
+
 
     <section class="hero">
         <div class="hero-content">
