@@ -1,10 +1,116 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* جعل خلفية الموقع سوداء بالكامل لمنع ظهور اللون الأبيض */
+body {
+    background-color: #121212;
+    color: #ffffff;
+    min-height: 100vh;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 5%;
+    background-color: #1a1a1a;
+    border-bottom: 1px solid #333;
+}
+
+header .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #e50914;
+}
+
+header nav a {
+    color: #ffffff;
+    text-decoration: none;
+    margin-right: 20px;
+    font-size: 16px;
+    transition: color 0.3s;
+}
+
+header nav a:hover {
+    color: #e50914;
+}
+
+.hero {
+    text-align: center;
+    padding: 80px 20px;
+    background: linear-gradient(135deg, #e50914 0%, #121212 100%);
+}
+
+.hero h1 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+
+.hero p {
+    font-size: 18px;
+    margin-bottom: 30px;
+    color: #ccc;
+}
+
+.btn {
+    background-color: #ffffff;
+    color: #e50914;
+    border: none;
+    padding: 12px 30px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+}
+
+.stats {
+    display: flex;
+    justify-content: space-around;
+    padding: 30px 5%;
+    background-color: #1a1a1a;
+    margin: 20px auto;
+    max-width: 1200px;
+    border-radius: 10px;
+    gap: 10px;
+}
+
+.stat-card {
+    text-align: center;
+    background-color: #262626;
+    padding: 15px 5px;
+    border-radius: 8px;
+    width: 30%;
+    border-bottom: 4px solid #e50914;
+}
+
+.stat-card h3 {
+    font-size: 26px;
+    color: #e50914;
+    margin-bottom: 5px;
+}
+
+.stat-card p {
+    color: #aaa;
+    font-size: 12px;
+}
+
 /* ======================================= */
-/* تنسيق بنرات الألعاب بستايل Epic Games  */
+/* تنسيق بنرات الألعاب المطور والـ Dark Mode */
 /* ======================================= */
 .categories-section {
     padding: 40px 4%;
-    background-color: #121212;
-    text-align: right; /* محاذاة النص لليمين */
+    background-color: #121212; /* إجبار الخلفية تكون سوداء */
+    text-align: right; 
 }
 
 .section-title {
@@ -24,25 +130,24 @@
     margin-top: 5px;
 }
 
-/* حاوي البنرات العمودية للموبايل */
 .categories-container {
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
 
-/* بطاقة البنر */
+/* تحسين بطاقة البنر لتظهر الصور والنصوص بوضوح عالي */
 .game-banner-card {
     background-size: cover;
     background-position: center;
     border-radius: 16px;
-    height: 220px; /* طول البنر ومناسب جداً للموبايل */
+    height: 240px; 
     display: flex;
     align-items: flex-end;
-    padding: 20px;
+    padding: 25px 20px;
     position: relative;
     overflow: hidden;
-    border: 1px solid #222;
+    border: 1px solid #2a2a2a;
     transition: transform 0.3s ease, border-color 0.3s ease;
 }
 
@@ -51,10 +156,12 @@
     border-color: #e50914;
 }
 
-/* محتوى البنر المتراكب فوق الصورة */
 .banner-content {
     z-index: 2;
     width: 100%;
+    background: linear-gradient(to top, rgba(18, 18, 18, 0.95) 40%, rgba(18, 18, 18, 0.4) 100%);
+    padding: 15px;
+    border-radius: 12px;
 }
 
 .game-tag {
@@ -70,34 +177,32 @@
 }
 
 .game-banner-card h3 {
-    color: #ffffff;
+    color: #ffffff !important; /* إجبار اللون الأبيض */
     font-size: 20px;
     margin-bottom: 6px;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.8);
 }
 
 .game-banner-card p {
-    color: #ccc;
+    color: #dddddd !important; 
     font-size: 13px;
     margin-bottom: 15px;
     line-height: 1.4;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.8);
 }
 
-/* زر دخول القسم داخل البنر */
+/* أزرار دخول الأقسام المحسنة */
 .btn-banner {
     display: inline-block;
-    background-color: #ffffff;
-    color: #121212;
+    background-color: #e50914;
+    color: #ffffff;
     text-decoration: none;
     padding: 10px 20px;
     border-radius: 8px;
     font-size: 13px;
     font-weight: bold;
-    transition: background 0.3s ease, color 0.3s ease;
+    transition: background 0.3s ease;
+    text-align: center;
 }
 
 .btn-banner:hover {
-    background-color: #e50914;
-    color: #ffffff;
+    background-color: #b20710;
 }
