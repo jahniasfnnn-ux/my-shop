@@ -4,15 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>متجر الحسابات الاحترافي</title>
-   <link rel="stylesheet" href="style.css?v=2">
-
-    <!-- مكتبة أيقونات FontAwesome لشكل احترافي -->
+    <link rel="stylesheet" href="style.css?v=3">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body class="dark-theme"> <!-- الوضع الداكن مفعل تلقائياً كوضع أساسي -->
-
-    <!-- شريط التنقل العلوي -->
-    <header>
+<body class="dark-theme"> <header>
         <div class="logo"><i class="fa-solid fa-gamepad"></i> متجر الحسابات</div>
         <nav>
             <button id="theme-toggle" class="btn-icon"><i class="fa-solid fa-sun"></i></button>
@@ -23,7 +18,6 @@
         </nav>
     </header>
 
-    <!-- بانر ترحيبي متحرك -->
     <section class="hero">
         <div class="hero-content">
             <h1>أقوى حسابات الألعاب بأفضل الأسعار</h1>
@@ -31,16 +25,15 @@
         </div>
     </section>
 
-    <!-- أزرار التصفية الفورية -->
     <section class="filter-section">
         <button class="filter-btn active" data-filter="all">الكل</button>
-        <button class="filter-btn" data-filter="fc">FC Mobile</button>
-        <button class="filter-btn" data-filter="siege">Rainbow Six</button>
+        <button class="filter-btn" data-filter="fc">FC</button>
+        <button class="filter-btn" data-filter="siege">Siege</button>
+        <button class="filter-btn" data-filter="pubg">PUBG</button>
+        <button class="filter-btn" data-filter="freefire">Free Fire</button>
     </section>
 
-    <!-- معرض المنتجات والحسابات -->
     <main class="products-container">
-        <!-- حساب 1 -->
         <div class="product-card" data-category="fc">
             <div class="badge">مميز</div>
             <h3>حساب FC Mobile أسطوري</h3>
@@ -51,7 +44,6 @@
             </button>
         </div>
 
-        <!-- حساب 2 -->
         <div class="product-card" data-category="siege">
             <h3>حساب Rainbow Six Siege</h3>
             <p class="price">90 $</p>
@@ -60,9 +52,27 @@
                 <i class="fa-solid fa-cart-plus"></i> إضافة للسلة
             </button>
         </div>
+
+        <div class="product-card" data-category="pubg">
+            <div class="badge">شحن عالي</div>
+            <h3>حساب ببجي مشحون كونكر</h3>
+            <p class="price">120 $</p>
+            <p class="desc">يحتوي على بدلات مثك نادرة، سكنات أسلحة مطورة، وجاهز للعب الفوري.</p>
+            <button class="add-to-cart-btn" onclick="addToCart('حساب ببجي مشحون كونكر', 120)">
+                <i class="fa-solid fa-cart-plus"></i> إضافة للسلة
+            </button>
+        </div>
+
+        <div class="product-card" data-category="freefire">
+            <h3>حساب فري فاير قديم (فاير باس)</h3>
+            <p class="price">75 $</p>
+            <p class="desc">حساب قديم من السيزونات الأولى فيه سكنات نادرة وجواهر متبقية في الحساب.</p>
+            <button class="add-to-cart-btn" onclick="addToCart('حساب فري فاير قديم', 75)">
+                <i class="fa-solid fa-cart-plus"></i> إضافة للسلة
+            </button>
+        </div>
     </main>
 
-    <!-- قسم تقييمات وآراء العملاء الجديد -->
     <section class="reviews-section">
         <h2><i class="fa-solid fa-star text-gold"></i> آراء عملائنا وعشاق الألعاب</h2>
         <div class="reviews-grid">
@@ -79,14 +89,12 @@
         </div>
     </section>
 
-    <!-- نافذة السلة الجانبية (تظهر عند الضغط على السلة) -->
     <div id="cart-sidebar" class="cart-sidebar">
         <div class="cart-header">
             <h3>سلة المشتريات</h3>
             <button id="close-cart" class="btn-icon"><i class="fa-solid fa-xmark"></i></button>
         </div>
         <div id="cart-items" class="cart-items">
-            <!-- المنتجات المضافة ستظهر هنا تلقائياً -->
             <p class="empty-msg">السلة فارغة حالياً</p>
         </div>
         <div class="cart-footer">
