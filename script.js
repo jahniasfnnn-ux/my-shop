@@ -1,24 +1,58 @@
-// 1. تشغيل السلة والوضع الداكن
-const themeToggle = document.getElementById('theme-toggle');
-const cartBtn = document.getElementById('cart-btn');
-const closeCart = document.getElementById('close-cart');
-const cartSidebar = document.getElementById('cart-sidebar');
+// الانتظار حتى تحميل الصفحة بالكامل لضمان تشغيل كل الميزات
+document.addEventListener("DOMContentLoaded", () => {
+    
+    const themeToggle = document.getElementById('theme-toggle');
+    const cartBtn = document.getElementById('cart-btn');
+    const closeCart = document.getElementById('close-cart');
+    const cartSidebar = document.getElementById('cart-sidebar');
 
-themeToggle.addEventListener('click', () => {
-    document.body.classList.toggle('dark-theme');
-    const icon = themeToggle.querySelector('i');
-    icon.className = document.body.classList.contains('dark-theme') ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+    // 1. تشغيل الوضع الداكن والفلتر فوراً
+    if(themeToggle) {
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-theme');
+            const icon = themeToggle.querySelector('i');
+            icon.className = document.body.classList.contains('dark-theme') ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+        });
+    }
+
+    if(cartBtn) cartBtn.addEventListener('click', () => cartSidebar.classList.add('open'));
+    if(closeCart) closeCart.addEventListener('click', () => cartSidebar.classList.remove('open'));
+
+    // تشغيل المنتجات المضافة والفلترة أول ما الصفحة تفتح
+    renderCustomProducts();
+    setupFilters();
+
+    // 2. إدارة نموذج إضافة المنتجات للأدمن
+    const adminForm = document.getElementById('add-product-form');
+    if(adminForm) {
+        adminForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('prod-name').value;
+            const price = parseFloat(document.getElementById('prod-price').value);
+            const desc = document.getElementById('prod-desc').value;
+            const category = document.getElementById('prod-category').value;
+            let img = document.getElementById('prod-image').value || 'https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=600';
+
+            let customProducts = JSON.parse(localStorage.getItem('custom_products')) || [];
+            const newProduct = { name, price, desc, category, img };
+            customProducts.push(newProduct);
+            localStorage.setItem('custom_products', JSON.stringify(customProducts));
+            
+            adminForm.reset();
+            renderCustomProducts();
+            setupFilters(); // إعادة تشغيل الفلتر ليتعرف على المنتج الجديد
+            alert('تم نشر الحساب بنجاح في المتجر!');
+        });
+    }
 });
 
-cartBtn.addEventListener('click', () => cartSidebar.classList.add('open'));
-closeCart.addEventListener('click', () => cartSidebar.classList.remove('open'));
-
-// 2. نظام الأدمن السري (الرمز الافتراضي هو: 1234)
+// نظام الأدمن السري (الرمز الافتراضي: 1234)
 function checkAdminAccess() {
     let password = prompt("أدخل الرمز السري للأدمن لفتح لوحة التحكم:");
-    if (password === "1234") { // تقدر تغير الرقم 1234 لأي رمز تبيه
+    if (password === "1234") {
+        document.getElementById('admin-panel').style.withChange = 'block';
         document.getElementById('admin-panel').style.display = 'block';
-        window.scrollTo(0, document.body.scrollHeight);
+        window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
     } else if (password !== null) {
         alert("الرمز السري خاطئ!");
     }
@@ -28,34 +62,16 @@ function logoutAdmin() {
     document.getElementById('admin-panel').style.display = 'none';
 }
 
-// 3. إدارة المنتجات وحفظها في localStorage
-let cart = [];
-let customProducts = JSON.parse(localStorage.getItem('custom_products')) || [];
-
-document.getElementById('add-product-form').addEventListener('submit', (e) => {
-    e.preventDefault();
-    const name = document.getElementById('prod-name').value;
-    const price = parseFloat(document.getElementById('prod-price').value);
-    const desc = document.getElementById('prod-desc').value;
-    const category = document.getElementById('prod-category').value;
-    let img = document.getElementById('prod-image').value || 'https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=600';
-
-    const newProduct = { name, price, desc, category, img };
-    customProducts.push(newProduct);
-    localStorage.setItem('custom_products', JSON.stringify(customProducts));
-    
-    document.getElementById('add-product-form').reset();
-    renderCustomProducts();
-    setupFilters(); // إعادة تنشيط الفلتر للمنتجات الجديدة
-    alert('تم نشر الحساب بنجاح في المتجر!');
-});
-
+// عرض المنتجات المضافة من الأدمن
 function renderCustomProducts() {
-    // إزالة أي حسابات مضافة سابقاً لمنع التكرار عند التحديث
     const dynamicItems = document.querySelectorAll('.custom-card');
     dynamicItems.forEach(item => item.remove());
 
     const grid = document.getElementById('products-grid');
+    if(!grid) return;
+
+    let customProducts = JSON.parse(localStorage.getItem('custom_products')) || [];
+    
     customProducts.forEach((prod, index) => {
         const card = document.createElement('div');
         card.className = 'product-card custom-card';
@@ -75,13 +91,16 @@ function renderCustomProducts() {
 
 function deleteProduct(index) {
     if(confirm('هل أنت متأكد من حذف هذا الحساب؟')) {
+        let customProducts = JSON.parse(localStorage.getItem('custom_products')) || [];
         customProducts.splice(index, 1);
         localStorage.setItem('custom_products', JSON.stringify(customProducts));
         renderCustomProducts();
+        setupFilters();
     }
 }
 
-// 4. السلة والواتساب
+// نظام السلة والطلب عبر الواتساب
+let cart = [];
 function addToCart(name, price) {
     cart.push({ name, price });
     updateCartUI();
@@ -90,6 +109,8 @@ function addToCart(name, price) {
 function updateCartUI() {
     document.getElementById('cart-count').innerText = cart.length;
     const cartItemsContainer = document.getElementById('cart-items');
+    if(!cartItemsContainer) return;
+    
     cartItemsContainer.innerHTML = '';
 
     if (cart.length === 0) {
@@ -131,16 +152,20 @@ function checkoutToWhatsApp() {
         message += `${index + 1}. ${item.name} - ${item.price} $\n`;
         total += item.price;
     });
-    message += `\n**الإجمالي:** ${total} $\nأرجو تزويدي بتفاصيل الدفع.`;
+    message += `\nالإجمالي: ${total} $\nأرجو تزويدي بتفاصيل الدفع.`;
     window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
 }
 
-// 5. نظام تصفية الألعاب (الفلتر)
+// نظام تصفية الألعاب (الفلتر)
 function setupFilters() {
     const filterButtons = document.querySelectorAll('.filter-btn');
-    const productCards = document.querySelectorAll('.product-card');
-
+    
     filterButtons.forEach(button => {
+        button.replaceWith(button.cloneNode(true)); // تنظيف الأحداث القديمة منعاً للتكرار
+    });
+
+    const newFilterButtons = document.querySelectorAll('.filter-btn');
+    newFilterButtons.forEach(button => {
         button.addEventListener('click', () => {
             document.querySelector('.filter-btn.active').classList.remove('active');
             button.classList.add('active');
@@ -156,7 +181,3 @@ function setupFilters() {
         });
     });
 }
-
-// تشغيل عند تحميل الصفحة
-renderCustomProducts();
-setupFilters();
