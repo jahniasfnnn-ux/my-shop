@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>متجر الحسابات الاحترافي</title>
-    <link rel="stylesheet" href="style.css?v=5">
+    <link rel="stylesheet" href="style.css?v=6">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body class="dark-theme">
@@ -70,17 +70,17 @@
     <section id="admin-panel" class="admin-panel" style="display: none;">
         <h2><i class="fa-solid fa-lock-open"></i> لوحة إدارة المتجر</h2>
         <form id="add-product-form">
-            <input type="text" id="prod-name" placeholder="اسم الحساب البرمجي (مثال: حساب ببجي مثك)" required>
-            <input type="number" id="prod-price" placeholder="السعر بالدولار $" required>
-            <input type="text" id="prod-desc" placeholder="وصف وتفاصيل الحساب" required>
+            <input type="text" id="prod-name" placeholder="اسم الحساب (مثال: حساب ببجي)" required>
+            <input type="number" id="prod-price" placeholder="السعر $" required>
+            <input type="text" id="prod-desc" placeholder="وصف الحساب" required>
             <select id="prod-category" required>
                 <option value="fc">FC Mobile</option>
                 <option value="siege">Rainbow Six</option>
                 <option value="pubg">PUBG</option>
                 <option value="freefire">Free Fire</option>
             </select>
-            <input type="url" id="prod-image" placeholder="رابط صورة الخلفية (رابط مباشر)">
-            <button type="submit" class="admin-submit-btn">نشر الحساب في المتجر فوراً</button>
+            <input type="url" id="prod-image" placeholder="رابط صورة الخلفية">
+            <button type="submit" class="admin-submit-btn">نشر الحساب فوراً</button>
         </form>
         <button onclick="logoutAdmin()" class="admin-logout-btn">إغلاق لوحة التحكم</button>
     </section>
@@ -90,13 +90,8 @@
         <div class="reviews-grid">
             <div class="review-card">
                 <div class="stars">⭐⭐⭐⭐⭐</div>
-                <p>"أفضل متجر تعاملت معه، التسليم سريع جداً والحساب مطابق للوصف بالملي!"</p>
+                <p>"أفضل متجر تعاملت معه، التسليم سريع جداً!"</p>
                 <h4>- أحمد الكناني</h4>
-            </div>
-            <div class="review-card">
-                <div class="stars">⭐⭐⭐⭐⭐</div>
-                <p>"الدعم الفني متعاون لأبعد الحدود وسعر الحساب أرخص من كل المواقع."</p>
-                <h4>- محمد مصطفى</h4>
             </div>
         </div>
     </section>
@@ -115,6 +110,6 @@
         </div>
     </div>
 
-    <script src="script.js?v=5"></script> 
+    <script src="script.js?v=6"></script>
 </body>
 </html>
