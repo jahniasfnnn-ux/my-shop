@@ -3,129 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>المساعد الذكي - الدعم الفني بالذكاء الاصطناعي</title>
-    <link rel="stylesheet" href="style.css?v=7">
+    <title>المساعد الذكي AI - متجر الحسابات</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* الألوان الثابتة لضمان عدم ظهور الشاشة السوداء */
-        body {
-            background-color: #0b0c10 !important;
-            color: #ffffff !important;
-            font-family: sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-        header {
-            background-color: #1f2833;
-            padding: 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 2px solid #00df9a;
-        }
-        .logo a {
-            color: #00df9a;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 18px;
-        }
-        .hero {
-            background: linear-gradient(135deg, #1f2833, #0b0c10);
-            text-align: center;
-            padding: 40px 20px;
-        }
-        .hero h1 {
-            color: #00df9a;
-            margin-bottom: 10px;
-        }
-        .chat-container {
-            max-width: 500px;
-            margin: 20px auto;
-            background-color: #1f2833;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-            display: flex;
-            flex-direction: column;
-            height: 450px;
-        }
-        .chat-messages {
-            flex: 1;
-            padding: 15px;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-        .message {
-            max-width: 85%;
-            padding: 12px;
-            border-radius: 8px;
-            font-size: 14px;
-            line-height: 1.5;
-        }
-        .message.bot {
-            background-color: #0b0c10;
-            color: #ffffff;
-            align-self: flex-start;
-            border-right: 4px solid #00df9a;
-        }
-        .message.user {
-            background-color: #00df9a;
-            color: #000000;
-            align-self: flex-end;
-            font-weight: bold;
-        }
-        .chat-input-area {
-            display: flex;
-            padding: 10px;
-            background-color: #0b0c10;
-        }
-        .chat-input-area input {
-            flex: 1;
-            padding: 12px;
-            background: #1f2833;
-            border: 1px solid #00df9a;
-            color: #ffffff;
-            border-radius: 6px;
-            margin-left: 10px;
-        }
-        .chat-send-btn {
-            background-color: #00df9a;
-            color: #000000;
-            border: none;
-            padding: 0 20px;
-            border-radius: 6px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-        .suggested-tags {
-            padding: 10px;
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-            background-color: #1f2833;
-            border-top: 1px solid #0b0c10;
-        }
-        .tag-btn {
-            background: #0b0c10;
-            border: 1px solid #00df9a;
-            color: #ffffff;
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            cursor: pointer;
-        }
-        .whatsapp-share-btn {
-            background-color: #2ecc71;
-            color: white;
-            border: none;
-            padding: 6px 10px;
-            border-radius: 4px;
-            margin-top: 8px;
-            cursor: pointer;
-            display: inline-block;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background-color: #0b0c10 !important; color: #ffffff !important; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; min-height: 100vh; display: flex; flex-direction: column; }
+        header { background-color: #1f2833 !important; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #00df9a; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+        .logo a { color: #00df9a !important; text-decoration: none; font-weight: bold; font-size: 18px; }
+        nav a { color: #ffffff !important; text-decoration: none; margin-right: 15px; font-size: 14px; font-weight: bold; }
+        .hero { background: linear-gradient(135deg, #1f2833, #0b0c10); text-align: center; padding: 30px 15px; border-bottom: 1px solid #1f2833; }
+        .hero h1 { color: #00df9a; font-size: 24px; margin-bottom: 8px; }
+        .hero p { color: #c5a880; font-size: 14px; }
+        .robot-avatar-container { text-align: center; margin-top: 15px; }
+        .robot-icon { font-size: 45px; color: #00df9a; animation: floatRobot 3s ease-in-out infinite; text-shadow: 0 0 15px #00df9a; }
+        @keyframes floatRobot { 0% { transform: translateY(0px); } 50% { transform: translateY(-10px); } 100% { transform: translateY(0px); } }
+        .chat-container { width: 92%; max-width: 500px; margin: 15px auto; background-color: #1f2833 !important; border-radius: 14px; overflow: hidden; box-shadow: 0 8px 25px rgba(0,0,0,0.6); display: flex; flex-direction: column; height: 500px; border: 1px solid #333; }
+        .chat-messages { flex: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; background-color: #151a21; }
+        .message { max-width: 85%; padding: 12px 14px; border-radius: 10px; font-size: 14px; line-height: 1.6; word-wrap: break-word; }
+        .message.bot { background-color: #1f2833 !important; color: #ffffff !important; align-self: flex-start; border-right: 4px solid #00df9a; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+        .message.user { background-color: #00df9a !important; color: #000000 !important; align-self: flex-end; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+        .suggested-tags { padding: 10px; display: flex; gap: 8px; overflow-x: auto; background-color: #1f2833; border-top: 1px solid #151a21; scrollbar-width: none; }
+        .tag-btn { background: #0b0c10 !important; border: 1px solid #00df9a !important; color: #ffffff !important; padding: 8px 14px; border-radius: 20px; font-size: 12px; cursor: pointer; white-space: nowrap; }
+        .chat-input-area { display: flex; padding: 12px; background-color: #1f2833; border-top: 1px solid #333; }
+        .chat-input-area input { flex: 1; padding: 12px; background: #0b0c10 !important; border: 1px solid #00df9a !important; color: #ffffff !important; border-radius: 8px; margin-left: 10px; font-size: 14px; outline: none; }
+        .chat-send-btn { background-color: #00df9a !important; color: #000000 !important; border: none; padding: 0 22px; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 16px; }
+        .whatsapp-share-btn { background-color: #2ecc71 !important; color: white !important; border: none; padding: 6px 12px; border-radius: 5px; margin-top: 8px; cursor: pointer; display: inline-block; font-weight: bold; text-decoration: none; font-size: 13px; }
     </style>
 </head>
 <body>
@@ -133,34 +35,36 @@
     <header>
         <div class="logo"><a href="index.html"><i class="fa-solid fa-gamepad"></i> متجر الحسابات</a></div>
         <nav>
-            <a href="index.html" style="color: #ffffff; text-decoration: none; margin-left: 15px; font-size: 14px;"><i class="fa-solid fa-store"></i> المتجر</a>
-            <a href="charge.html" style="color: #ffffff; text-decoration: none; font-size: 14px;"><i class="fa-solid fa-bolt"></i> شحن الألعاب</a>
+            <a href="index.html"><i class="fa-solid fa-store"></i> المتجر الرئيسي</a>
+            <a href="charge.html"><i class="fa-solid fa-bolt" style="color: #f1c40f;"></i> شحن الـ ID</a>
         </nav>
     </header>
 
     <section class="hero">
-        <div class="hero-content">
-            <h1><i class="fa-solid fa-robot"></i> المساعد الفني الذكي (AI)</h1>
-            <p>أنا هنا لمساعدتك في حل أي مشكلة فوراً، أو استقبال رأيك وتقييمك لمتجرنا!</p>
+        <h1><i class="fa-solid fa-robot"></i> مساعدك الذكي الآلي</h1>
+        <p>موسوعة حل مشاكل المتجر الفورية واستقبال التقييمات!</p>
+        <div class="robot-avatar-container">
+            <i class="fa-solid fa-robot robot-icon"></i>
         </div>
     </section>
 
     <main class="chat-container">
         <div class="chat-messages" id="chat-messages">
             <div class="message bot">
-                مرحباً بك! أنا مساعدك الذكي في متجر الحسابات. 🤖<br><br>
-                يمكنك سؤالي عن طريقة الاستلام، الضمان، أو كتابة رأيك وتقييمك للمتجر هنا مباشرة!
+                مرحباً بك! أنا الروبوت المساعد المطور 🤖.<br><br>
+                لقد تم تحديثي لأفهم كافة استفساراتك حول (طرق الدفع، بنكك، طريقة التسليم، الأمان والضمان، المشاكل التقنية، وشحن الألعاب)! اكتب سؤالك وسأجيبك فوراً.
             </div>
         </div>
 
         <div class="suggested-tags">
-            <button class="tag-btn" onclick="sendSuggested('كيف أستلم الحساب بعد الشراء؟')">📦 طريقة الاستلام</button>
-            <button class="tag-btn" onclick="sendSuggested('ما هو ضمان الحسابات؟')">🛡️ شروط الضمان</button>
-            <button class="tag-btn" onclick="sendSuggested('أريد كتابة رأيي وتقييمي للمتجر')">⭐ كتابة تقييم ورأي</button>
+            <button class="tag-btn" onclick="sendSuggested('طرق الدفع وبنكك')">💳 كيف أدفع؟ (بنكك)</button>
+            <button class="tag-btn" onclick="sendSuggested('الحساب ما شغال معاي')">❌ مشكلة في تسجيل الدخول</button>
+            <button class="tag-btn" onclick="sendSuggested('كيف أضمن ما يتسحب؟')">🛡️ تأمين الحساب والضمان</button>
+            <button class="tag-btn" onclick="sendSuggested('أريد كتابة تقييم ورأي للمتجر')">⭐ كتابة تقييم للمتجر</button>
         </div>
 
         <div class="chat-input-area">
-            <input type="text" id="chat-input" placeholder="اكتب سؤالك أو رأيك هنا..." onkeypress="handleKeyPress(event)">
+            <input type="text" id="chat-input" placeholder="اكتب سؤالك بلهجتك وسأفهمك فوراً..." onkeypress="handleKeyPress(event)">
             <button class="chat-send-btn" onclick="sendMessage()"><i class="fa-solid fa-paper-plane"></i></button>
         </div>
     </main>
@@ -169,26 +73,15 @@
         const messagesContainer = document.getElementById('chat-messages');
         const chatInput = document.getElementById('chat-input');
 
-        function handleKeyPress(e) {
-            if (e.key === 'Enter') sendMessage();
-        }
-
-        function sendSuggested(text) {
-            chatInput.value = text;
-            sendMessage();
-        }
+        function handleKeyPress(e) { if (e.key === 'Enter') sendMessage(); }
+        function sendSuggested(text) { chatInput.value = text; sendMessage(); }
 
         function sendMessage() {
             const query = chatInput.value.trim();
             if (!query) return;
-
             appendMessage(query, 'user');
             chatInput.value = '';
-
-            setTimeout(() => {
-                const reply = generateAiReply(query);
-                appendMessage(reply, 'bot');
-            }, 600);
+            setTimeout(() => { appendMessage(generateAiReply(query), 'bot'); }, 400);
         }
 
         function appendMessage(text, sender) {
@@ -199,38 +92,52 @@
             messagesContainer.scrollTop = messagesContainer.scrollHeight;
         }
 
+        // محرك الذكاء الاصطناعي الموسع والشامل لجميع السيناريوهات
         function generateAiReply(input) {
-            const txt = input.toLowerCase();
+            const txt = input.toLowerCase().trim();
             
-            if (txt.includes('رأي') || txt.includes('تقييم') || txt.includes('ممتاز') || txt.includes('جميل') || txt.includes('متجر رائع')) {
-                if(txt.length > 20) {
-                    return `شكراً جزيلاً لك على مشاركتنا رأيك الفخم! 💚<br>
-                    اضغط على الزر بالأسفل لإرساله لي عبر الواتساب لنشره في الصفحة الرئيسية:<br>
-                    <button class="whatsapp-share-btn" onclick="shareReview('${input}')"><i class="fa-brands fa-whatsapp"></i> إرسال التقييم للواتساب</button>`;
+            // 1. التقييمات والآراء
+            if (txt.includes('رأي') || txt.includes('تقييم') || txt.includes('ممتاز') || txt.includes('جميل') || txt.includes('متجر رائع') || txt.includes('كفو') || txt.includes('رهيب') || txt.includes('ثقة')) {
+                if(txt.length > 15) {
+                    return `يا عيني عليك! شكراً جزيلاً لك على مشاركتنا هذا الرأي الفخم! 💚<br>
+                    اضغط على الزر بالأسفل لإرساله لي مباشرة عبر الواتساب لكي أقوم بنشره فوراً في واجهة الموقع الرئيسية:<br>
+                    <button class="whatsapp-share-btn" onclick="shareReview('${input}')"><i class="fa-brands fa-whatsapp"></i> إرسال التقييم للواتساب 🚀</button>`;
                 }
-                return "يسعدني جداً استقبال رأيك وتقييمك! فضلاً اكتب تجربتك معنا في رسالة هنا وسأقوم بتحضيرها للنشر فوراً! ⭐";
+                return "يسعدني جداً استقبال رأيك وتقييمك! فضلاً اكتب تجربتك معنا بالتفصيل في رسالة هنا وسأقوم بتحضيرها للنشر فوراً! ⭐";
             }
 
-            if (txt.includes('استلم') || txt.includes('شراء') || txt.includes('طريقة')) {
-                return "📦 **طريقة استلام الحسابات الفورية:**<br>عند إتمام طلبك عبر السلة والتحويل للواتساب، سيقوم الدعم الفني بتسليمك معلومات الحساب (Username & Password) والبريد الأساسي لتأمينه بالكامل خلال 5 إلى 15 دقيقة كحد أقصى!";
+            // 2. طرق الدفع وبنكك والتحويل
+            if (txt.includes('دفع') || txt.includes('بنكك') || txt.includes('احول') || txt.includes('تحويل') || txt.includes('سعر') || txt.includes('قروش') || txt.includes('طرق الدفع')) {
+                return "💳 **معلومات وطرق الدفع المتاحة:**<br>• نقبل التحويل المباشر عبر تطبيق **(بنكك - Bankak)** للحساب الإداري.<br>• ونقبل أيضاً المعاملات عبر العملات الرقمية أو الرصيد حسب الاتفاق.<br><br>بعد اختيار حسابك من السلة وإرساله للواتساب، سيقوم الأدمن بتزويدك برقم الحساب والاسم الصحيح للتحويل فوراً.";
             }
 
-            if (txt.includes('ضمان') || txt.includes('بند') || txt.includes('سحب')) {
-                return "🛡️ **سياسة الضمان:**<br>نوفر **ضمان كامل لمدة 30 يوماً** ضد السحب أو البند المفاجئ. في حال حدوث أي مشكلة، يتم تعويضك بحساب بديل بنفس القيمة أو استرداد أموالك فوراً.";
+            // 3. مشكلة الحساب لا يعمل أو كلمة المرور خطأ
+            if (txt.includes('ما شغال') || txt.includes('غلط') || txt.includes('خطأ') || txt.includes('رمز') || txt.includes('باسورد') || txt.includes('كلمة السر') || txt.includes('ما فتح')) {
+                return "❌ **حل مشكلة عدم فتح الحساب:**<br>لا تقلق أبداً حقك محفوظ! إذا ظهرت لك كلمة المرور خاطئة، يرجى التأكد من الحروف الكبيرة والصغيرة (Capital & Small) بدقة.<br><br>إذا استمرت المشكلة، قم بأخذ لقطة شاشة للخطأ وأرسلها فوراً للأدمن على الواتساب، وسيتم استبدال الحساب لك بحساب آخر يعمل فوراً أو حل المشكلة في دقائق.";
             }
 
-            if (txt.includes('شحن') || txt.includes('شدات') || txt.includes('جواهر')) {
-                return "⚡ **مركز الشحن الفوري:**<br>الشحن يتم مباشرة عبر الـ ID الرسمي الخاص بك. يستغرق من دقيقة إلى 5 دقائق بعد تأكيد الدفع على الواتساب.";
+            // 4. طريقة التسليم والوقت
+            if (txt.includes('استلم') || txt.includes('شراء') || txt.includes('كيف') || txt.includes('متى') || txt.includes('تأخر')) {
+                return "📦 **طريقة وزمن تسليم الحسابات:**<br>التسليم سريع وفوري! بعد إرسال إشعار التحويل (الاسكرين) على الواتساب، يتم التحقق وتلسيمك بيانات الحساب (اسم المستخدم + الباسورد + إيميل التأمين) في فترة تتراوح بين **5 إلى 15 دقيقة** كحد أقصى.";
             }
 
-            return `لقد استقبلت استفسارك بخصوص ("${input}"). 🤖<br><br>يمكنك مراجعة نقاط (الاستلام أو الضمان) من الأزرار السريعة بالأسفل، أو توجيهها للدعم الفني البشري مباشرة عبر الواتساب وسنقوم بحلها لك فوراً!`;
-        }
+            // 5. الأمان والضمان وضد السحب
+            if (txt.includes('ضمان') || txt.includes('بند') || txt.includes('سحب') || txt.includes('رجع') || txt.includes('مضمون') || txt.includes('امان')) {
+                return "🛡️ **سياسة الضمان والأمان (حقك في الحفظ والصون):**<br>• جميع حساباتنا شرعية ومفحوصة وخالية من المشاكل.<br>• نوفر **ضمان ذهبي لمدة 30 يوماً** ضد السحب أو البند التلقائي.<br>• عند الاستلام، نساعدك في تغيير الإيميل وربط الحساب برقمك لضمان ألا يدخل فيه شخص غيرك نهائياً.";
+            }
 
-        function shareReview(reviewText) {
-            let phoneNumber = "249900863926";
-            let message = `⭐️ *تقييم ورأي عميل جديد للنشر في الموقع* ⭐️\n\n"${reviewText}"\n\nأرجو إضافته لقسم آراء العملاء في المتجر.`;
-            window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
-        }
-    </script>
-</body>
-</html>
+            // 6. شحن الألعاب والـ ID
+            if (txt.includes('شحن') || txt.includes('شدات') || txt.includes('جواهر') || txt.includes('fc') || txt.includes('كوينز') || txt.includes('ببجي')) {
+                return "⚡ **مركز الشحن الفوري بالـ ID:**<br>إذا كنت تريد شحن (عملات FC، شدات ببجي، أو جواهر فري فاير)، توجه إلى صفحة **'شحن الألعاب'** من القائمة العلوية، واكتب الـ ID الخاص بك واختر الكمية، وسيتم الشحن لحسابك مباشرة خلال 5 دقائق بعد الدفع!";
+            }
+
+            // 7. السلام والترحيب
+            if (txt.includes('سلام') || txt.includes('مرحبا') || txt.includes('هلا') || txt.includes('زول') || txt.includes('السلام عليكم')) {
+                return "أهلاً ومرحباً بك يا غالي في متجرنا! 🤖 أنا مساعدك الذكي، اسألني عن أي شيء (طريقة الدفع، الضمان، الاستلام، مشكلة بالحساب) وسأجيبك في ثانية!";
+            }
+
+            // 8. الرد العام الذكي جداً في حال عدم تطابق أي كلمة
+            return `تلقيت سؤالك بخصوص وضعه الحالي 🤖.<br><br>
+            لحل هذا الأمر فوراً:<br>
+            1. اضغط على أحد **الأزرار الجاهزة** بالأسفل (طرق الدفع، مشاكل الدخول، الضمان).<br>
+            2. أو إذا كانت لديك مشكلة خاصة بطلبك، اكتب كلمة **(دعم بشري)** أو
