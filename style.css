@@ -206,3 +206,106 @@ header nav a:hover {
 .btn-banner:hover {
     background-color: #b20710;
 }
+/* ======================================= */
+/* تنسيق قسم كروت المنتجات والحسابات        */
+/* ======================================= */
+.products-section {
+    padding: 50px 4%;
+    background-color: #121212;
+}
+
+.products-container {
+    display: flex;
+    flex-direction: column;
+    gap: 25px; /* مسافة بين الكروت */
+}
+
+.product-card {
+    background-color: #1a1a1a;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid #2a2a2a;
+    position: relative;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+}
+
+/* شارة اللعبة فوق الكارت */
+.product-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: #e50914;
+    color: #fff;
+    padding: 5px 12px;
+    font-size: 11px;
+    font-weight: bold;
+    border-radius: 6px;
+    z-index: 5;
+}
+
+.product-img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-bottom: 2px solid #2a2a2a;
+}
+
+.product-info {
+    padding: 20px;
+    text-align: right;
+}
+
+.product-info h3 {
+    color: #fff;
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+.product-desc {
+    color: #aaa;
+    font-size: 13px;
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+
+.product-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    background-color: #222;
+    padding: 8px 12px;
+    border-radius: 8px;
+}
+
+.product-meta .price {
+    color: #2ecc71; /* لون أخضر فخم للسعر */
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.product-meta .status {
+    color: #e50914;
+    font-size: 12px;
+    background-color: rgba(229, 9, 20, 0.1);
+    padding: 2px 8px;
+    border-radius: 4px;
+}
+
+/* زر الشراء عبر الواتساب الاحترافي */
+.btn-buy {
+    display: block;
+    background-color: #25d366; /* لون الواتساب الأخضر الرسمي */
+    color: #fff;
+    text-decoration: none;
+    text-align: center;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.btn-buy:hover {
+    background-color: #1ebd58;
+}
