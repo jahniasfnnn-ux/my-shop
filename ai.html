@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المساعد الذكي - الدعم الفني بالذكاء الاصطناعي</title>
+    <link rel="stylesheet" href="style.css?v=6">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .chat-container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: var(--header-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            display: flex;
+            flex-direction: column;
+            height: 500px;
+        }
+        .chat-messages {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .message {
+            max-width: 80%;
+            padding: 10px 14px;
+            border-radius: 8px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        .message.bot {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            align-self: flex-start;
+            border-right: 3px solid var(--accent-color);
+        }
+        .message.user {
+            background-color: var(--accent-color);
+            color: #000;
+            align-self: flex-end;
+            font-weight: bold;
+        }
+        .chat-input-area {
+            display: flex;
+            padding: 10px;
+            background-color: var(--bg-color);
+            border-top: 1px solid var(--primary-color);
+        }
+        .chat-input-area input {
+            flex: 1;
+            padding: 12px;
+            background: var(--header-bg);
+            border: 1px solid var(--primary-color);
+            color: var(--text-color);
+            border-radius: 6px;
+            margin-left: 10px;
+        }
+        .chat-send-btn {
+            background-color: var(--accent-color);
+            color: #000;
+            border: none;
+            padding: 0 20px;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .suggested-tags {
+            padding: 10px;
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            background-color: var(--header-bg);
+            border-top: 1px solid var(--primary-color);
+        }
+        .tag-btn {
+            background: var(--bg-color);
+            border: 1px solid var(--accent-color);
+            color: var(--text-color);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+        .whatsapp-share-btn {
+            background-color: #2ecc71;
