@@ -1,9 +1,326 @@
-<header class="main-header">
-    <div class="logo-area">
-        <img src="logo.png" alt="WD BEIN Logo" class="brand-logo">
-        <div class="brand-text">
-            <h1>WD BEIN</h1>
-            <p>متجر الحسابات الأسطورية</p>
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WD BEIN | متجر حسابات الألعاب</title>
+    <style>
+        /* كل التنسيقات مدمجة هنا لضمان عمل الموقع فوراً */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #0c0c0c;
+            color: #fff;
+        }
+
+        header {
+            background-color: #121212;
+            padding: 15px 4%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #1a1a1a;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #e50914;
+            letter-spacing: 1px;
+        }
+
+        nav a {
+            color: #aaa;
+            text-decoration: none;
+            margin-right: 20px;
+            font-size: 14px;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        nav a:hover {
+            color: #fff;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(rgba(12, 12, 12, 0.8), #0c0c0c), url('https://images.unsplash.com/photo-1538481199705-c710c4e965fc?q=80&w=1200') no-repeat center/cover;
+        }
+
+        .hero h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .hero p {
+            color: #ccc;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            background-color: #e50914;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .categories-section {
+            padding: 40px 4%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .section-title h2 {
+            font-size: 22px;
+            color: #fff;
+            margin-bottom: 5px;
+        }
+
+        .section-title p {
+            color: #666;
+            font-size: 13px;
+        }
+
+        .categories-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .game-banner-card {
+            background-size: cover;
+            background-position: center;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #222;
+        }
+
+        .banner-content {
+            padding: 30px 20px;
+            background: linear-gradient(to top, rgba(12,12,12,1) 40%, rgba(12,12,12,0.4) 100%);
+        }
+
+        .game-tag {
+            background-color: #e50914;
+            color: #fff;
+            font-size: 11px;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        .banner-content h3 {
+            margin: 10px 0 5px 0;
+            font-size: 20px;
+        }
+
+        .banner-content p {
+            color: #aaa;
+            font-size: 13px;
+            margin-bottom: 15px;
+        }
+
+        .btn-banner {
+            display: inline-block;
+            background-color: #fff;
+            color: #000;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 13px;
+            cursor: pointer;
+        }
+
+        .products-section {
+            padding: 30px 4%;
+            background-color: #111;
+            border-top: 1px solid #222;
+        }
+
+        .products-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .product-card {
+            background-color: #161616;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #252525;
+            display: block; /* تظهر كلها في البداية */
+        }
+
+        .product-img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 15px;
+        }
+
+        .product-info h3 {
+            font-size: 17px;
+            margin-bottom: 5px;
+        }
+
+        .product-desc {
+            color: #999;
+            font-size: 12px;
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+
+        .product-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .price {
+            color: #2ecc71;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .status {
+            color: #e50914;
+            font-size: 11px;
+            background: rgba(229,9,20,0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        .btn-buy {
+            display: block;
+            background-color: #25d366;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">WD BEIN</div>
+        <nav>
+            <a onclick="showCategory('all')">الرئيسية</a>
+            <a href="#categories">الأقسام</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>أقوى حسابات الألعاب بين يديك</h1>
+        <p>متجر WD BEIN لتسليم حسابات ببجي وفري فاير وفيفا المضمونة</p>
+        <a href="#products" onclick="showCategory('all')" class="btn">تصفح كل الحسابات 🎮</a>
+    </section>
+
+    <section class="categories-section" id="categories">
+        <div class="section-title">
+            <h2>اختر لعبتك المفضلة</h2>
+            <p>اضغط على عرض الحسابات للدخول للقسم</p>
         </div>
-    </div>
-</header>
+        
+        <div class="categories-container">
+            <div class="game-banner-card" style="background-image: url('https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=400');">
+                <div class="banner-content">
+                    <span class="game-tag">PUBG Mobile</span>
+                    <h3>ببجي موبايل</h3>
+                    <p>حسابات كونكر ومثك نادر جاهز للجلد</p>
+                    <a href="#products" onclick="showCategory('pubg')" class="btn-banner">عرض الحسابات 🎮</a>
+                </div>
+            </div>
+
+            <div class="game-banner-card" style="background-image: url('https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=400');">
+                <div class="banner-content">
+                    <span class="game-tag">Free Fire</span>
+                    <h3>فري فاير</h3>
+                    <p>حسابات فاير باص قديم وسكنات نادرة</p>
+                    <a href="#products" onclick="showCategory('freefire')" class="btn-banner">عرض الحسابات 🔥</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="products-section" id="products">
+        <div class="section-title">
+            <h2 id="product-section-title">الحسابات المعروضة</h2>
+        </div>
+
+        <div class="products-container">
+            
+            <div class="product-card" data-category="pubg">
+                <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=400" class="product-img">
+                <div class="product-info">
+                    <h3>حساب ببجي ليفل 75 (ام فور ثلجي)</h3>
+                    <p class="product-desc">الحساب مشحون مواسم قديمة وفيه سكنات ميثك مميزة.</p>
+                    <div class="product-meta">
+                        <span class="price">60$</span>
+                        <span class="status">متوفر</span>
+                    </div>
+                    <a href="https://wa.me/249900863926?text=أريد%20شراء%20حساب%20ببجي%20ثلجي" target="_blank" class="btn-buy">شراء عبر الواتساب 💬</a>
+                </div>
+            </div>
+
+            <div class="product-card" data-category="freefire">
+                <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=400" class="product-img">
+                <div class="product-info">
+                    <h3>حساب فري فاير سكنات قديمة</h3>
+                    <p class="product-desc">حساب ليفل 62 يحتوي على الفاير باص القديم والرقصات كاملة.</p>
+                    <div class="product-meta">
+                        <span class="price">30$</span>
+                        <span class="status">متوفر</span>
+                    </div>
+                    <a href="https://wa.me/249900863926?text=أريد%20شراء%20حساب%20فري%20فاير%20قديم" target="_blank" class="btn-buy">شراء عبر الواتساب 💬</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <script>
+        function showCategory(category) {
+            const cards = document.querySelectorAll('.product-card');
+            const title = document.getElementById('product-section-title');
+            
+            if(category === 'pubg') {
+                title.innerText = "حسابات ببجي موبايل";
+            } else if(category === 'freefire') {
+                title.innerText = "حسابات فري فاير";
+            } else {
+                title.innerText = "جميع الحسابات المتوفرة";
+            }
+
+            cards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
