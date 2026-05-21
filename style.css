@@ -1,92 +1,61 @@
-/* ====== الأساسيات ====== */
 :root {
   --bg-main: #0b0c10;
   --bg-card: #1f2833;
   --bg-header: #131a21;
   --text-main: #ffffff;
-  --text-secondary: #c5c6c7;
   --accent: #66fcf1;
-  --accent-hover: #45a29e;
-  --danger: #ff4b5c;
-  --border: #2a2f36;
-  --shadow: 0 4px 20px rgba(0,0,0,0.4);
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Tajawal', 'Cairo', sans-serif;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif; }
 
-body {
-  background: var(--bg-main);
-  color: var(--text-main);
-  direction: rtl;
-  line-height: 1.6;
-}
+body { background: var(--bg-main); color: var(--text-main); direction: rtl; }
 
-/* ====== الهيدر ====== */
+/* الهيدر */
 .header {
-  position: sticky;
-  top: 0;
+  padding: 15px 20px;
   background: var(--bg-header);
-  padding: 15px 30px;
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid var(--border);
-  z-index: 100;
-  box-shadow: var(--shadow);
+  border-bottom: 2px solid var(--accent);
 }
 
-.logo {
-  font-size: 24px;
-  font-weight: 700;
-  color: var(--accent);
-}
-
-.logo span {
-  color: var(--text-main);
-}
-
-.header-actions {
-  display: flex;
-  gap: 15px;
-  align-items: center;
-}
-
-.header-actions button {
-  background: transparent;
-  border: 1px solid var(--border);
-  color: var(--text-main);
-  padding: 8px 12px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.3s;
-  font-size: 16px;
-}
-
-.header-actions button:hover {
-  background: var(--accent);
-  color: var(--bg-main);
-  border-color: var(--accent);
-}
-
-/* ====== شبكة المنتجات ====== */
-.main-content {
-  padding: 40px 20px;
-  max-width: 1300px;
-  margin: 0 auto;
-}
+/* الشبكة الأساسية */
+.main-content { padding: 20px; }
 
 .products-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 25px;
+  gap: 20px;
+  /* ذكاء الكود: سيضع منتجاً واحداً في الهاتف، وعدة منتجات في الكمبيوتر */
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 }
 
-/* ====== كرت المنتج ====== */
+/* كرت المنتج */
 .product-card {
-  background-size: cover;
-  background-position: center;
+  background: var(--bg-card);
+  padding: 20px;
+  border-radius: 15px;
+  text-align: center;
+  border: 1px solid #444;
+  transition: 0.3s;
+}
+
+.product-card:hover { border-color: var(--accent); }
+
+.buy-btn {
+  background: var(--accent);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin-top: 10px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* التجاوب للهواتف فقط */
+@media (max-width: 600px) {
+  .products-grid {
+    grid-template-columns: 1fr; /* يضمن عرض كرت واحد فقط بعرض الشاشة */
+  }
+  .header { padding: 10px; }
+  .logo { font-size: 16px; }
+}
