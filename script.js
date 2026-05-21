@@ -1,126 +1,129 @@
+// ====== إعداد Firebase ======
+const firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_AUTH_DOMAIN",
+  projectId: "YOUR_PROJECT_ID",
+  storageBucket: "YOUR_STORAGE_BUCKET",
+  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+  appId: "YOUR_APP_ID"
+};
 
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getFirestore, collection, doc, deleteDoc, getDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+// ====== الكود القديم حقك + التعديلات ======
 document.addEventListener("DOMContentLoaded", () => {
-    const themeToggle = document.getElementById('theme-toggle');
-    const cartBtn = document.getElementById('cart-btn');
-    const closeCart = document.getElementById('close-cart');
-    const cartSidebar = document.getElementById('cart-sidebar');
+  const themeToggle = document.getElementById('theme-toggle');
+  const cartBtn = document.getElementById('cart-btn');
+  const closeCart = document.getElementById('close-cart');
+  const cartSidebar = document.getElementById('cart-sidebar');
+  const grid = document.getElementById("products-grid");
 
-    if(themeToggle) {
-        themeToggle.addEventListener('click', () => {
-            document.body.classList.toggle('dark-theme');
-        });
-    }
-    if(cartBtn) cartBtn.addEventListener('click', () => cartSidebar.classList.add('open'));
-    if(closeCart) closeCart.addEventListener('click', () => cartSidebar.classList.remove('open'));
+  // الثيم
+  if(themeToggle) {
+    themeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark-theme');
+      themeToggle.innerHTML = document.body.classList.contains('dark-theme') 
+        ? '<i class="fa-solid fa-sun"></i>' 
+        : '<i class="fa-solid fa-moon"></i>';
+    });
+  }
 
-    renderCustomProducts();
-    setupFilters();
+  // السلة
+  if(cartBtn) cartBtn.addEventListener('click', () => cartSidebar.classList.add('open'));
+  if(closeCart) closeCart.addEventListener('click', () => cartSidebar.classList.remove('open'));
 
-    const adminForm = document.getElementById('add-product-form');
-    if(adminForm) {
-        adminForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const name = document.getElementById('prod-name').value;
-            const price = parseFloat(document.getElementById('prod-price').value);
-            const desc = document.getElementById('prod-desc').value;
-            const category = document.getElementById('prod-category').value;
-            let img = document.getElementById('prod-image').value || 'https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=600';
-
-            let customProducts = JSON.parse(localStorage.getItem('custom_products')) || [];
-            customProducts.push({ name, price, desc, category, img });
-            localStorage.setItem('custom_products', JSON.stringify(customProducts));
-            
-            adminForm.reset();
-            renderCustomProducts();
-            setupFilters();
-            alert('تم نشر الحساب بنجاح!');
-        });
-    }
+  // جيب المنتجات من Firebase واعرضها
+  if(grid) {
+    grid.innerHTML = "<p style='text-align:center;color:#aaa;'>جاري تحميل الحسابات...</p>";
+    listenToProducts();
+  }
 });
 
-function checkAdminAccess() {
-    let password = prompt("أدخل الرمز السري للأدمن:");
-    if (password === "1234") {
-        document.getElementById('admin-panel').style.display = 'block';
-        window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
-    } else if (password !== null) {
-        alert("الرمز السري خاطئ!");
+// ====== استماع مباشر لـ Firebase ======
+function listenToProducts() {
+  const grid = document.getElementById("products-grid");
+  
+  onSnapshot(collection(db, "accounts"), (snapshot) => {
+    grid.innerHTML = "";
+    
+    if (snapshot.empty) {
+      grid.innerHTML = "<p style='text-align:center;color:#aaa;'>لا توجد حسابات متاحة حالياً</p>";
+      return;
     }
-}
-
-function logoutAdmin() {
-    document.getElementById('admin-panel').style.display = 'none';
-}
-
-function renderCustomProducts() {
-    document.querySelectorAll('.custom-card').forEach(item => item.remove());
-    const grid = document.getElementById('products-grid');
-    if(!grid) return;
-
-    let customProducts = JSON.parse(localStorage.getItem('custom_products')) || [];
-    customProducts.forEach((prod, index) => {
-        const card = document.createElement('div');
-        card.className = 'product-card custom-card';
-        card.setAttribute('data-category', prod.category);
-        card.style.backgroundImage = `linear-gradient(to bottom, rgba(19, 26, 33, 0.85), rgba(11, 12, 16, 0.95)), url('${prod.img}')`;
-        card.innerHTML = `
-            <h3>${prod.name}</h3>
-            <p class="price">${prod.price} $</p>
-            <p class="desc">${prod.desc}</p>
-            <button class="add-to-cart-btn" onclick="addToCart('${prod.name}', ${prod.price})"><i class="fa-solid fa-cart-plus"></i> إضافة للسلة</button>
-            <button class="delete-admin-btn" onclick="deleteProduct(${index})" style="background:#ff4757;color:#fff;border:none;padding:5px;width:100%;border-radius:4px;margin-top:5px;"><i class="fa-solid fa-trash"></i> حذف الحساب</button>
-        `;
-        grid.appendChild(card);
+    
+    snapshot.forEach((docSnap) => {
+      const data = docSnap.data();
+      grid.innerHTML += `
+        <div class="product-card" data-category="${data.category}" data-id="${docSnap.id}"
+             style="background-image: linear-gradient(to bottom, rgba(19, 26, 33, 0.85), rgba(11, 12, 16, 0.95)), url('${data.image || 'https://images.unsplash.com/photo-1508098682722-e99c43a406b2?q=80&w=600'}');">
+          ${data.badge ? `<div class="badge">${data.badge}</div>` : ""}
+          <h3>${data.name}</h3>
+          <p class="price">${data.price} $</p>
+          <p class="desc">${data.desc}</p>
+          <button class="add-to-cart-btn" onclick="buyAndDelete('${docSnap.id}', '${data.name}', ${data.price})">
+            <i class="fa-solid fa-cart-plus"></i> شراء
+          </button>
+        </div>
+      `;
     });
+  });
 }
 
-function deleteProduct(index) {
-    if(confirm('حذف الحساب؟')) {
-        let customProducts = JSON.parse(localStorage.getItem('custom_products')) || [];
-        customProducts.splice(index, 1);
-        localStorage.setItem('custom_products', JSON.stringify(customProducts));
-        renderCustomProducts();
-        setupFilters();
+// ====== الشراء والحذف الأوتوماتيكي ======
+window.buyAndDelete = async function(docId, name, price) {
+  try {
+    const ref = doc(db, "accounts", docId);
+    const snap = await getDoc(ref);
+    
+    if (!snap.exists()) {
+      alert("عذراً، الحساب ده اتباع قبل كده");
+      return;
     }
+
+    await deleteDoc(ref);
+    alert(`تم البيع! حساب ${name} اتحذف من الموقع أوتوماتيك`);
+    
+    const phone = "9665XXXXXXX"; // غير رقمك هنا
+    const message = `السلام عليكم، أريد شراء ${name} بسعر ${price}$`;
+    window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, '_blank');
+
+  } catch (error) {
+    console.error("خطأ:", error);
+    alert("حصل خطأ، الحساب ما اتحذف");
+  }
 }
 
+// ====== نظام السلة القديم حقك ======
 let cart = [];
-function addToCart(name, price) {
-    cart.push({ name, price });
-    document.getElementById('cart-count').innerText = cart.length;
-    const container = document.getElementById('cart-items');
-    container.innerHTML = '';
-    let total = 0;
-    cart.forEach((item, index) => {
-        total += item.price;
-        const div = document.createElement('div');
-        div.style.display = 'flex';
-        div.style.justify = 'space-between';
-        div.style.marginBottom = '10px';
-        div.innerHTML = `<span>${item.name}</span><span>${item.price} $</span>`;
-        container.appendChild(div);
-    });
-    document.getElementById('cart-total').innerText = total;
+
+window.addToCart = function(name, price) {
+  cart.push({ name, price });
+  updateCart();
 }
 
-function checkoutToWhatsApp() {
-    if (cart.length === 0) return alert('السلة فارغة!');
-    let msg = "طلب شراء حسابات:\n";
-    let total = 0;
-    cart.forEach((item, i) => { msg += `${i+1}. ${item.name} - ${item.price} $\n`; total += item.price; });
-    msg += `\nالإجمالي: ${total} $`;
-    window.open(`https://wa.me/249900863926?text=${encodeURIComponent(msg)}`, '_blank');
-}
-
-function setupFilters() {
-    document.querySelectorAll('.filter-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            document.querySelector('.filter-btn.active').classList.remove('active');
-            btn.classList.add('active');
-            const val = btn.getAttribute('data-filter');
-            document.querySelectorAll('.product-card').forEach(card => {
-                card.style.display = (val === 'all' || card.getAttribute('data-category') === val) ? 'block' : 'none';
-            });
-        });
-    });
-}
+function updateCart() {
+  document.getElementById("cart-count").textContent = cart.length;
+  const cartItems = document.getElementById("cart-items");
+  const cartTotal = document.getElementById("cart-total");
+  
+  if (cart.length === 0) {
+    cartItems.innerHTML = '<p class="empty-msg">السلة فارغة حالياً</p>';
+    cartTotal.textContent = "0";
+    return;
+  }
+  
+  let html = "";
+  let total = 0;
+  cart.forEach((item, index) => {
+    html += `
+      <div class="cart-item">
+        <span>${item.name}</span>
+        <span>${item.price} $</span>
+        <button onclick="removeFromCart(${index})"><i class="fa-solid fa-trash"></i></button>
+      </div>
+    `;
+    total += item.price;
