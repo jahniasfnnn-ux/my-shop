@@ -3,7 +3,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebas
 import { getAuth } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
 import { getFirestore } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
 
-// إعدادات المشروع
+// إعدادات المشروع (مدمج فيها المفتاح الصحيح)
 const firebaseConfig = {
   apiKey: "AIzaSyBPrIbAxrLNUPINKa4nf0MVM1_Jf32vb1A",
   authDomain: "myshop-9cf11.firebaseapp.com",
@@ -16,6 +16,6 @@ const firebaseConfig = {
 // تهيئة Firebase
 const app = initializeApp(firebaseConfig);
 
-// تصدير الخدمات لاستخدامها في ملفات أخرى
+// تصدير الخدمات للاستخدام في الملفات الأخرى
 export const auth = getAuth(app);
 export const db = getFirestore(app);
