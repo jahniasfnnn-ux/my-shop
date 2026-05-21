@@ -1,45 +1,48 @@
 :root {
-  --primary: #7b2cbf; /* البنفسجي */
-  --dark: #0f0f0f;
+  --deep-violet: #2e003e; /* بنفسجي غامق */
+  --glow-violet: #8e44ad; /* بنفسجي فاتح للإضاءة */
+  --dark-bg: #0a0a0a;     /* أسود فخم */
   --text: #ffffff;
 }
 
-body { background-color: var(--dark); color: var(--text); font-family: sans-serif; text-align: center; margin: 0; }
-
-.main-header { padding: 40px 20px; background: linear-gradient(to bottom, var(--primary), var(--dark)); }
-.main-header h1 { font-size: 3rem; margin: 0; letter-spacing: 2px; }
-
-.categories-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 15px;
-  padding: 20px;
+body {
+  background-color: var(--dark-bg);
+  color: var(--text);
+  font-family: 'Cairo', sans-serif;
+  margin: 0;
 }
 
-.cat-card {
-  height: 200px;
+.main-header {
+  background: linear-gradient(135deg, var(--deep-violet), var(--dark-bg));
+  padding: 30px;
+  border-bottom: 2px solid var(--glow-violet);
+  display: flex;
+  justify-content: center;
+}
+
+.logo-area {
   display: flex;
   align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  color: white;
-  font-weight: bold;
-  font-size: 1.5rem;
-  border-radius: 20px;
-  background-size: cover;
-  background-position: center;
-  border: 3px solid var(--primary);
-  transition: 0.3s;
-  position: relative;
+  gap: 15px;
 }
 
-.cat-card::after { /* طبقة تعتيم ليكون النص واضحاً */
-  content: "";
-  position: absolute;
-  width: 100%; height: 100%;
-  background: rgba(0,0,0,0.5);
-  border-radius: 17px;
+.brand-logo {
+  width: 60px; /* حجم اللوجو */
+  height: 60px;
+  border-radius: 12px;
+  border: 2px solid var(--glow-violet);
 }
 
-.cat-card span { z-index: 1; }
-.cat-card:hover { transform: scale(1.05); border-color: white; }
+.brand-text h1 {
+  margin: 0;
+  font-size: 2rem;
+  letter-spacing: 2px;
+  text-shadow: 0 0 10px var(--glow-violet);
+}
+
+/* تنسيق الأقسام بنفس اللون البنفسجي */
+.cat-card {
+  background: rgba(46, 0, 62, 0.5); /* بنفسجي شفاف */
+  border: 1px solid var(--glow-violet);
+  backdrop-filter: blur(10px); /* تأثير ضبابي عصري */
+}
