@@ -16,6 +16,6 @@ const firebaseConfig = {
 // تهيئة Firebase
 const app = initializeApp(firebaseConfig);
 
-// تصدير الخدمات لنستخدمها في ملفات أخرى
+// تصدير الخدمات لنستخدمها في ملفات أخرى (مثل signup.js)
 export const auth = getAuth(app);
 export const db = getFirestore(app);
