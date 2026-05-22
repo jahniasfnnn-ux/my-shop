@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>my shop | متجر الحسابات</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -17,32 +17,21 @@
             --danger-red: #ef4444;
         }
 
-        /* إصلاح مشكلة الأبعاد والابتعاد على الهواتف */
-        html, body {
-            width: 100%;
-            max-width: 100vw;
-            overflow-x: hidden;
-            background-color: var(--bg-color);
-            color: #ffffff;
+        * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
             font-family: 'Cairo', sans-serif;
-            box-sizing: border-box;
         }
 
-        *, *::before, *::after {
-            box-sizing: inherit;
-        }
-
-        /* الحاوية الرئيسية ممتدة بالكامل وتملأ الشاشة */
-        .shop-container {
-            width: 100%;
+        body {
+            background-color: var(--bg-color);
+            color: #ffffff;
             padding: 15px;
-            display: flex;
-            flex-direction: column;
+            width: 100%;
         }
 
-        /* الهيدر العلوي بكامل العرض وبحجم كبير */
+        /* ضبط الهيدر ليفرش كاملاً مثل الصورة المطلوبة */
         .navbar {
             background-color: var(--card-bg);
             border-radius: 12px;
@@ -52,17 +41,9 @@
             align-items: center;
             margin-bottom: 25px;
             border: 1px solid #1f2937;
-            width: 100%;
         }
 
         .nav-right {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-            text-align: right;
-        }
-
-        .nav-title-row {
             display: flex;
             align-items: center;
             gap: 8px;
@@ -79,14 +60,40 @@
             font-size: 22px;
         }
 
-        .nav-links {
+        .nav-left {
             display: flex;
-            gap: 15px;
-            font-size: 14px;
-            margin-top: 4px;
+            align-items: center;
+            gap: 20px;
+            font-size: 20px;
+            color: #ffffff;
         }
 
-        .nav-links a {
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .cart-badge {
+            position: absolute;
+            top: -8px;
+            right: -10px;
+            background-color: var(--danger-red);
+            color: white;
+            font-size: 11px;
+            padding: 1px 6px;
+            border-radius: 50%;
+        }
+
+        /* روابط شحن الألعاب والمساعد تحت الهيدر */
+        .sub-nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 25px;
+            font-size: 14px;
+        }
+
+        .sub-nav-links a {
             color: #ffffff;
             text-decoration: none;
             display: flex;
@@ -94,62 +101,36 @@
             gap: 6px;
         }
 
-        .nav-links a.active {
+        .sub-nav-links a.active {
             color: #10b981;
-        }
-
-        .nav-left {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            font-size: 22px;
-            color: var(--text-muted);
-        }
-
-        .cart-icon {
-            position: relative;
-            color: #ffffff;
-        }
-
-        .cart-badge {
-            position: absolute;
-            top: -6px;
-            right: -8px;
-            background-color: var(--danger-red);
-            color: white;
-            font-size: 11px;
-            padding: 2px 6px;
-            border-radius: 50%;
         }
 
         /* قسم العناوين */
         .hero-section {
             text-align: center;
             margin-bottom: 25px;
-            padding: 0 10px;
         }
 
         .hero-title {
-            font-size: 30px;
+            font-size: 28px;
             font-weight: 700;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             line-height: 1.4;
         }
 
         .hero-subtitle {
             color: var(--text-muted);
-            font-size: 15px;
+            font-size: 14px;
             line-height: 1.6;
         }
 
-        /* أزرار الفلترة */
+        /* أزرار الفلترة ممتدة ومريحة */
         .filter-container {
             display: flex;
             gap: 10px;
             overflow-x: auto;
             padding-bottom: 12px;
             margin-bottom: 25px;
-            width: 100%;
             scrollbar-width: none;
         }
         
@@ -161,9 +142,9 @@
             background-color: transparent;
             color: #ffffff;
             border: 1px solid #374151;
-            padding: 10px 24px;
-            border-radius: 25px;
-            font-size: 16px;
+            padding: 8px 22px;
+            border-radius: 20px;
+            font-size: 15px;
             font-weight: bold;
             cursor: pointer;
             white-space: nowrap;
@@ -174,55 +155,53 @@
             border-color: var(--primary-purple);
         }
 
-        /* شبكة الكروت الكبيرة لتملأ الشاشة عرضياً */
+        /* الكروت تملأ عرض الشاشة بالكامل دون انضغاط */
         .products-grid {
             display: flex;
             flex-direction: column;
             gap: 20px;
-            width: 100%;
         }
 
         .product-card {
             background-color: var(--card-bg);
             border-radius: 16px;
             border: 1px solid #1f2937;
-            padding: 24px;
+            padding: 20px;
             position: relative;
             text-align: right;
-            width: 100%;
         }
 
         .badge-premium {
             position: absolute;
-            top: 18px;
-            right: 18px;
+            top: 15px;
+            right: 15px;
             background-color: var(--danger-red);
             color: white;
-            font-size: 13px;
-            padding: 4px 14px;
+            font-size: 12px;
+            padding: 3px 12px;
             border-radius: 6px;
             font-weight: bold;
         }
 
         .product-title {
-            font-size: 22px;
+            font-size: 20px;
             font-weight: bold;
-            margin-top: 20px;
-            margin-bottom: 10px;
+            margin-top: 15px;
+            margin-bottom: 8px;
         }
 
         .product-price {
             color: var(--text-cyan);
-            font-size: 24px;
+            font-size: 22px;
             font-weight: bold;
             margin-bottom: 15px;
         }
 
         .product-desc {
             color: var(--text-muted);
-            font-size: 15px;
+            font-size: 14px;
             line-height: 1.6;
-            margin-bottom: 22px;
+            margin-bottom: 20px;
         }
 
         .btn-add-cart {
@@ -230,9 +209,9 @@
             color: white;
             border: none;
             width: 100%;
-            padding: 15px;
-            border-radius: 12px;
-            font-size: 17px;
+            padding: 14px;
+            border-radius: 10px;
+            font-size: 16px;
             font-weight: bold;
             display: flex;
             align-items: center;
@@ -244,62 +223,59 @@
 </head>
 <body>
 
-    <div class="shop-container">
-        <div class="navbar">
-            <div class="nav-right">
-                <div class="nav-title-row">
-                    <i class="fa-solid fa-gamepad nav-brand-icon"></i>
-                    <span class="nav-title">my shop</span>
-                </div>
-                <div class="nav-links">
-                    <a href="#"><i class="fa-solid fa-bolt"></i> شحن الألعاب</a>
-                    <a href="#" class="active"><i class="fa-solid fa-robot"></i> مساعد AI</a>
-                </div>
+    <div class="navbar">
+        <div class="nav-right">
+            <i class="fa-solid fa-gamepad nav-brand-icon"></i>
+            <span class="nav-title">my shop</span>
+        </div>
+        <div class="nav-left">
+            <div class="cart-icon">
+                <i class="fa-solid fa-shopping-cart"></i>
+                <span class="cart-badge">0</span>
             </div>
-            <div class="nav-left">
-                <div class="cart-icon">
-                    <i class="fa-solid fa-shopping-cart"></i>
-                    <span class="cart-badge">0</span>
-                </div>
-                <i class="fa-solid fa-gear"></i>
-            </div>
+            <i class="fa-solid fa-gear"></i>
+        </div>
+    </div>
+
+    <div class="sub-nav-links">
+        <a href="#"><i class="fa-solid fa-bolt"></i> شحن الألعاب</a>
+        <a href="#" class="active"><i class="fa-solid fa-robot"></i> مساعد AI</a>
+    </div>
+
+    <div class="hero-section">
+        <h1 class="hero-title">أقوى حسابات الألعاب<br>بأفضل الأسعار</h1>
+        <p class="hero-subtitle">تسليم فوري، دعم متواصل، وضمان كامل على كافة الحسابات.</p>
+    </div>
+
+    <div class="filter-container">
+        <button class="filter-btn active">الكل</button>
+        <button class="filter-btn">FC</button>
+        <button class="filter-btn">Siege</button>
+        <button class="filter-btn">PUBG</button>
+        <button class="filter-btn">Free Fire</button>
+    </div>
+
+    <div class="products-grid">
+        
+        <div class="product-card">
+            <span class="badge-premium">مميز</span>
+            <h2 class="product-title">حساب FC Mobile أسطوري</h2>
+            <div class="product-price">$ 150</div>
+            <p class="product-desc">تشكيلة قوية مع لاعبين طاقات +100 وجاهز للمنافسة فوراً.</p>
+            <button class="btn-add-cart">
+                <i class="fa-solid fa-cart-plus"></i> إضافة للسلة
+            </button>
         </div>
 
-        <div class="hero-section">
-            <h1 class="hero-title">أقوى حسابات الألعاب<br>بأفضل الأسعار</h1>
-            <p class="hero-subtitle">تسليم فوري، دعم متواصل، وضمان كامل على كافة الحسابات.</p>
+        <div class="product-card">
+            <h2 class="product-title">حساب Rainbow Six Siege</h2>
+            <div class="product-price">$ 90</div>
+            <p class="product-desc">يحتوي على سكنات نادرة ورانك ممتاز جاهز للعب التنافسي.</p>
+            <button class="btn-add-cart">
+                <i class="fa-solid fa-cart-plus"></i> إضافة للسلة
+            </button>
         </div>
 
-        <div class="filter-container">
-            <button class="filter-btn active">الكل</button>
-            <button class="filter-btn">FC</button>
-            <button class="filter-btn">Siege</button>
-            <button class="filter-btn">PUBG</button>
-            <button class="filter-btn">Free Fire</button>
-        </div>
-
-        <div class="products-grid">
-            
-            <div class="product-card">
-                <span class="badge-premium">مميز</span>
-                <h2 class="product-title">حساب FC Mobile أسطوري</h2>
-                <div class="product-price">$ 150</div>
-                <p class="product-desc">تشكيلة قوية مع لاعبين طاقات +100 وجاهز للمنافسة فوراً.</p>
-                <button class="btn-add-cart">
-                    <i class="fa-solid fa-cart-plus"></i> إضافة للسلة
-                </button>
-            </div>
-
-            <div class="product-card">
-                <h2 class="product-title">حساب Rainbow Six Siege</h2>
-                <div class="product-price">$ 90</div>
-                <p class="product-desc">يحتوي على سكنات نادرة ورانك ممتاز جاهز للعب التنافسي.</p>
-                <button class="btn-add-cart">
-                    <i class="fa-solid fa-cart-plus"></i> إضافة للسلة
-                </button>
-            </div>
-
-        </div>
     </div>
 
     <script>
