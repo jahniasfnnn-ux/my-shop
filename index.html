@@ -15,6 +15,7 @@
             --text-cyan: #06b6d4;
             --text-muted: #9ca3af;
             --danger-red: #ef4444;
+            --input-bg: #1f2937;
         }
 
         * {
@@ -28,6 +29,78 @@
             background-color: var(--bg-color);
             color: #ffffff;
             padding: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* شاشة تسجيل الدخول */
+        .auth-container {
+            background-color: var(--card-bg);
+            border: 1px solid #1f2937;
+            border-radius: 16px;
+            padding: 30px 20px;
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .auth-title {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 25px;
+            color: #ffffff;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+            text-align: right;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--input-bg);
+            border: 1px solid #374151;
+            border-radius: 10px;
+            color: white;
+            font-size: 15px;
+            outline: none;
+            text-align: left;
+        }
+
+        .form-group input:focus {
+            border-color: var(--primary-purple);
+        }
+
+        .btn-auth {
+            background-color: var(--primary-purple);
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 14px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: 0.3s;
+        }
+
+        /* شاشة المتجر الرئيسي (مخفية في البداية) */
+        .shop-container {
+            display: none;
+            width: 100%;
+            max-width: 600px;
+            align-self: flex-start;
         }
 
         /* الهيدر العلوي */
@@ -46,6 +119,7 @@
             display: flex;
             flex-direction: column;
             gap: 4px;
+            text-align: right;
         }
 
         .nav-title {
@@ -55,7 +129,6 @@
             display: flex;
             align-items: center;
             gap: 8px;
-            text-transform: lowercase; /* لجعل اسم my shop يظهر بشكل متناسق */
         }
 
         .nav-links {
@@ -100,7 +173,7 @@
             border-radius: 50%;
         }
 
-        /* العناوين الرئيسية */
+        /* العناوين */
         .hero-section {
             text-align: center;
             margin-bottom: 25px;
@@ -117,8 +190,6 @@
             color: var(--text-muted);
             font-size: 14px;
             line-height: 1.6;
-            max-width: 90%;
-            margin: 0 auto;
         }
 
         /* أزرار الفلترة */
@@ -145,7 +216,6 @@
             font-weight: bold;
             cursor: pointer;
             white-space: nowrap;
-            transition: all 0.3s;
         }
 
         .filter-btn.active {
@@ -153,7 +223,7 @@
             border-color: var(--primary-purple);
         }
 
-        /* كروت عرض المنتجات */
+        /* الكروت */
         .products-grid {
             display: flex;
             flex-direction: column;
@@ -166,6 +236,7 @@
             border: 1px solid #1f2937;
             padding: 20px;
             position: relative;
+            text-align: right;
         }
 
         .badge-premium {
@@ -183,7 +254,7 @@
         .product-title {
             font-size: 18px;
             font-weight: bold;
-            margin-top: 10px;
+            margin-top: 15px;
             margin-bottom: 8px;
         }
 
@@ -220,62 +291,89 @@
 </head>
 <body>
 
-    <div class="navbar">
-        <div class="nav-right">
-            <div class="nav-title">
-                <i class="fa-solid fa-gamepad"></i> my shop
+    <div class="auth-container" id="authBox">
+        <h2 class="auth-title">تسجيل حساب في المتجر</h2>
+        <form id="loginForm" onsubmit="loginUser(event)">
+            <div class="form-group">
+                <label>البريد الإلكتروني</label>
+                <input type="email" placeholder="example@gmail.com" required>
             </div>
-            <div class="nav-links">
-                <a href="#"><i class="fa-solid fa-bolt"></i> شحن الألعاب</a>
-                <a href="#" class="active"><i class="fa-solid fa-robot"></i> مساعد AI</a>
+            <div class="form-group">
+                <label>كلمة المرور</label>
+                <input type="password" placeholder="••••••••" required>
             </div>
-        </div>
-        <div class="nav-left">
-            <div class="cart-icon">
-                <i class="fa-solid fa-shopping-cart"></i>
-                <span class="cart-badge">0</span>
-            </div>
-            <i class="fa-solid fa-gear"></i>
-        </div>
+            <button type="submit" class="btn-auth">إنشاء الحساب</button>
+        </form>
     </div>
 
-    <div class="hero-section">
-        <h1 class="hero-title">أقوى حسابات الألعاب<br>بأفضل الأسعار</h1>
-        <p class="hero-subtitle">تسليم فوري، دعم متواصل، وضمان كامل على كافة الحسابات.</p>
-    </div>
-
-    <div class="filter-container">
-        <button class="filter-btn active">الكل</button>
-        <button class="filter-btn">FC</button>
-        <button class="filter-btn">Siege</button>
-        <button class="filter-btn">PUBG</button>
-        <button class="filter-btn">Free Fire</button>
-    </div>
-
-    <div class="products-grid">
-        
-        <div class="product-card">
-            <span class="badge-premium">مميز</span>
-            <h2 class="product-title">حساب FC Mobile أسطوري</h2>
-            <div class="product-price">$ 150</div>
-            <p class="product-desc">تشكيلة قوية مع لاعبين طاقات +100 وجاهز للمنافسة فوراً.</p>
-            <button class="btn-add-cart">
-                <i class="fa-solid fa-cart-plus"></i> إضافة للسلة
-            </button>
+    <div class="shop-container" id="shopBox">
+        <div class="navbar">
+            <div class="nav-right">
+                <div class="nav-title">
+                    <i class="fa-solid fa-gamepad"></i> my shop
+                </div>
+                <div class="nav-links">
+                    <a href="#"><i class="fa-solid fa-bolt"></i> شحن الألعاب</a>
+                    <a href="#" class="active"><i class="fa-solid fa-robot"></i> مساعد AI</a>
+                </div>
+            </div>
+            <div class="nav-left">
+                <div class="cart-icon">
+                    <i class="fa-solid fa-shopping-cart"></i>
+                    <span class="cart-badge">0</span>
+                </div>
+                <i class="fa-solid fa-gear"></i>
+            </div>
         </div>
 
-        <div class="product-card">
-            <h2 class="product-title">حساب Rainbow Six Siege</h2>
-            <div class="product-price">$ 90</div>
-            <p class="product-desc">يحتوي على سكنات نادرة ورانك ممتاز جاهز للعب التنافسي.</p>
-            <button class="btn-add-cart">
-                <i class="fa-solid fa-cart-plus"></i> إضافة للسلة
-            </button>
+        <div class="hero-section">
+            <h1 class="hero-title">أقوى حسابات الألعاب<br>بأفضل الأسعار</h1>
+            <p class="hero-subtitle">تسليم فوري، دعم متواصل، وضمان كامل على كافة الحسابات.</p>
         </div>
 
+        <div class="filter-container">
+            <button class="filter-btn active">الكل</button>
+            <button class="filter-btn">FC</button>
+            <button class="filter-btn">Siege</button>
+            <button class="filter-btn">PUBG</button>
+            <button class="filter-btn">Free Fire</button>
+        </div>
+
+        <div class="products-grid">
+            <div class="product-card">
+                <span class="badge-premium">مميز</span>
+                <h2 class="product-title">حساب FC Mobile أسطوري</h2>
+                <div class="product-price">$ 150</div>
+                <p class="product-desc">تشكيلة قوية مع لاعبين طاقات +100 وجاهز للمنافسة فوراً.</p>
+                <button class="btn-add-cart">
+                    <i class="fa-solid fa-cart-plus"></i> إضافة للسلة
+                </button>
+            </div>
+
+            <div class="product-card">
+                <h2 class="product-title">حساب Rainbow Six Siege</h2>
+                <div class="product-price">$ 90</div>
+                <p class="product-desc">يحتوي على سكنات نادرة ورانك ممتاز جاهز للعب التنافسي.</p>
+                <button class="btn-add-cart">
+                    <i class="fa-solid fa-cart-plus"></i> إضافة للسلة
+                </button>
+            </div>
+        </div>
     </div>
 
     <script>
+        // دالة تحويل الواجهة عند الضغط على إنشاء حساب
+        function loginUser(event) {
+            event.preventDefault(); // منع إعادة تحميل الصفحة
+            document.getElementById('authBox').style.display = 'none'; // إخفاء التسجيل
+            
+            // تغيير ستايل الـ body ليتناسب مع المتجر
+            document.body.style.alignItems = 'flex-start';
+            
+            document.getElementById('shopBox').style.display = 'block'; // إظهار المتجر
+        }
+
+        // تفاعل أزرار الفلترة
         const filterButtons = document.querySelectorAll('.filter-btn');
         filterButtons.forEach(btn => {
             btn.addEventListener('click', () => {
