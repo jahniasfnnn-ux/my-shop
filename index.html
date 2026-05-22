@@ -3,352 +3,160 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WD BEIN | متجر حسابات الألعاب</title>
+    <title>WD BEIN | متجر الحسابات</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
-        /* إعادة ضبط المسافات الأساسية */
+        :root {
+            --bg-color: #0b0f19;
+            --card-bg: #111827;
+            --primary-purple: #7c3aed;
+            --text-cyan: #06b6d4;
+            --text-muted: #9ca3af;
+            --danger-red: #ef4444;
+        }
+
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Cairo', sans-serif;
         }
 
         body {
-            background-color: #0c0c0c;
-            color: #fff;
-            padding-bottom: 40px; /* فراغ أسفل الصفحة تماماً */
+            background-color: var(--bg-color);
+            color: #ffffff;
+            padding: 15px;
         }
 
-        /* الهيدر مع فراغ سفلي */
-        header {
-            background-color: #121212;
-            padding: 20px 5%;
+        /* الهيدر العلوي */
+        .navbar {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 15px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 2px solid #1a1a1a;
-            margin-bottom: 15px; /* فراغ بين الهيدر والواجهة الرئيسية */
+            margin-bottom: 30px;
+            border: 1px solid #1f2937;
         }
 
-        .logo {
-            font-size: 26px;
+        .nav-right {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .nav-title {
+            color: var(--text-cyan);
+            font-size: 18px;
             font-weight: bold;
-            color: #e50914;
-            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
-        nav a {
-            color: #aaa;
+        .nav-links {
+            display: flex;
+            gap: 15px;
+            font-size: 13px;
+        }
+
+        .nav-links a {
+            color: #ffffff;
             text-decoration: none;
-            margin-right: 20px;
-            font-size: 15px;
-            transition: color 0.3s;
-            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
 
-        nav a:hover {
-            color: #fff;
+        .nav-links a.active {
+            color: #10b981; /* لون أخضر للمساعد البوت */
         }
 
-        /* الواجهة الرئيسية مع تكبير الفراغات الداخلي */
-        .hero {
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 18px;
+            color: var(--text-muted);
+        }
+
+        .cart-icon {
+            position: relative;
+            color: #ffffff;
+        }
+
+        .cart-badge {
+            position: absolute;
+            top: -8px;
+            right: -10px;
+            background-color: var(--danger-red);
+            color: white;
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 50%;
+        }
+
+        /* العناوين الرئيسية */
+        .hero-section {
             text-align: center;
-            padding: 80px 25px;
-            background: linear-gradient(rgba(12, 12, 12, 0.85), #0c0c0c), url('https://images.unsplash.com/photo-1538481199705-c710c4e965fc?q=80&w=1200') no-repeat center/cover;
-            border-radius: 12px;
-            width: 94%;
-            margin: 0 auto 25px auto; /* تكبير العرض وفراغ خارجي سفلي */
-        }
-
-        .hero h1 {
-            font-size: 32px;
-            margin-bottom: 15px;
-            color: #fff;
-        }
-
-        .hero p {
-            color: #ccc;
-            font-size: 15px;
             margin-bottom: 25px;
         }
 
-        .btn {
-            background-color: #e50914;
-            color: #fff;
-            padding: 12px 28px;
-            border-radius: 6px;
-            font-weight: bold;
-            text-decoration: none;
-            display: inline-block;
+        .hero-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            line-height: 1.4;
         }
 
-        /* أقسام الألعاب - زيادة العرض وإضافة فراغات */
-        .categories-section {
-            width: 94%;
-            margin: 0 auto 30px auto; /* سنترة القسم وفراغ سفلي */
-            padding: 10px 0;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 25px; /* فراغ صغير بين العنوان والكروت */
-        }
-
-        .section-title h2 {
-            font-size: 24px;
-            color: #fff;
-            margin-bottom: 8px;
-        }
-
-        .section-title p {
-            color: #777;
+        .hero-subtitle {
+            color: var(--text-muted);
             font-size: 14px;
-        }
-
-        .categories-container {
-            display: flex;
-            flex-direction: column;
-            gap: 20px; /* فراغ مظبوط بين كل كارت لعبة والثاني */
-        }
-
-        /* تكبير كروت الألعاب لتظهر بشكل أوضح وأعرض */
-        .game-banner-card {
-            background-size: cover;
-            background-position: center;
-            border-radius: 14px;
-            overflow: hidden;
-            border: 1px solid #222;
-            width: 100%; /* تأخذ كامل عرض الحاوية المكبرة */
-            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
-        }
-
-        .banner-content {
-            padding: 40px 25px; /* زيادة الفراغ الداخلي ليعطي فخامة */
-            background: linear-gradient(to top, rgba(12,12,12,1) 45%, rgba(12,12,12,0.3) 100%);
-        }
-
-        .game-tag {
-            background-color: #e50914;
-            color: #fff;
-            font-size: 12px;
-            padding: 4px 10px;
-            border-radius: 5px;
-            font-weight: bold;
-        }
-
-        .banner-content h3 {
-            margin: 15px 0 8px 0;
-            font-size: 22px;
-        }
-
-        .banner-content p {
-            color: #bbb;
-            font-size: 14px;
-            margin-bottom: 20px;
-        }
-
-        .btn-banner {
-            display: inline-block;
-            background-color: #fff;
-            color: #000;
-            padding: 10px 22px;
-            border-radius: 6px;
-            font-weight: bold;
-            text-decoration: none;
-            font-size: 14px;
-            cursor: pointer;
-        }
-
-        /* قسم المنتجات والحسابات */
-        .products-section {
-            width: 94%;
+            line-height: 1.6;
+            max-width: 90%;
             margin: 0 auto;
-            padding: 25px 0;
-            border-top: 1px solid #222;
         }
 
-        .products-container {
+        /* أزرار الفلترة */
+        .filter-container {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding-bottom: 10px;
+            margin-bottom: 25px;
+            scrollbar-width: none; /* إخفاء شريط التمرير */
+        }
+        
+        .filter-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .filter-btn {
+            background-color: transparent;
+            color: #ffffff;
+            border: 1px solid #374151;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.3s;
+        }
+
+        .filter-btn.active {
+            background-color: var(--primary-purple);
+            border-color: var(--primary-purple);
+        }
+
+        /* كروت عرض المنتجات */
+        .products-grid {
             display: flex;
             flex-direction: column;
-            gap: 25px; /* فراغ بين كروت الحسابات المتوفرة للبيع */
+            gap: 20px;
         }
 
-        /* تكبير كروت عرض الحسابات وفراغاتها */
-        .product-card {
-            background-color: #141414;
-            border-radius: 14px;
-            overflow: hidden;
-            border: 1px solid #252525;
-            width: 100%;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.5);
-        }
-
-        .product-img {
-            width: 100%;
-            height: 200px; /* زيادة طول الصورة لتكون أوضح وحقيقية */
-            object-fit: cover;
-        }
-
-        .product-info {
-            padding: 20px; /* مسافة داخلية مريحة للكلام */
-        }
-
-        .product-info h3 {
-            font-size: 19px;
-            margin-bottom: 8px;
-            color: #fff;
-        }
-
-        .product-desc {
-            color: #aaa;
-            font-size: 13px;
-            margin-bottom: 15px;
-            line-height: 1.5;
-        }
-
-        .product-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-            background-color: #1c1c1c;
-            padding: 8px 12px;
-            border-radius: 6px;
-        }
-
-        .price {
-            color: #2ecc71;
-            font-size: 20px;
-            font-weight: bold;
-        }
-
-        .status {
-            color: #e50914;
-            font-size: 12px;
-            background: rgba(229,9,20,0.15);
-            padding: 3px 8px;
-            border-radius: 5px;
-            font-weight: bold;
-        }
-
-        .btn-buy {
-            display: block;
-            background-color: #25d366;
-            color: #fff;
-            text-align: center;
-            padding: 12px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 15px;
-            transition: background 0.2s;
-        }
-        
-        .btn-buy:hover {
-            background-color: #1ebd58;
-        }
-    </style>
-</head>
-<body>
-
-    <header>
-        <div class="logo">WD BEIN</div>
-        <nav>
-            <a onclick="showCategory('all')">الرئيسية</a>
-            <a href="#categories">الأقسام</a>
-        </nav>
-    </header>
-
-    <section class="hero">
-        <h1>أقوى حسابات الألعاب بين يديك</h1>
-        <p>متجر WD BEIN لتسليم حسابات ببجي وفري فاير وفيفا المضمونة</p>
-        <a href="#products" onclick="showCategory('all')" class="btn">تصفح كل الحسابات 🎮</a>
-    </section>
-
-    <section class="categories-section" id="categories">
-        <div class="section-title">
-            <h2>اختر لعبتك المفضلة</h2>
-            <p>اضغط على عرض الحسابات للدخول للقسم</p>
-        </div>
-        
-        <div class="categories-container">
-            <div class="game-banner-card" style="background-image: url('https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=400');">
-                <div class="banner-content">
-                    <span class="game-tag">PUBG Mobile</span>
-                    <h3>ببجي موبايل</h3>
-                    <p>حسابات كونكر ومثك نادر جاهز للجلد</p>
-                    <a href="#products" onclick="showCategory('pubg')" class="btn-banner">عرض الحسابات 🎮</a>
-                </div>
-            </div>
-
-            <div class="game-banner-card" style="background-image: url('https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=400');">
-                <div class="banner-content">
-                    <span class="game-tag">Free Fire</span>
-                    <h3>فري فاير</h3>
-                    <p>حسابات فاير باص قديم وسكنات نادرة</p>
-                    <a href="#products" onclick="showCategory('freefire')" class="btn-banner">عرض الحسابات 🔥</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="products-section" id="products">
-        <div class="section-title">
-            <h2 id="product-section-title">جميع الحسابات المتوفرة</h2>
-        </div>
-
-        <div class="products-container">
-            
-            <div class="product-card" data-category="pubg">
-                <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=400" class="product-img">
-                <div class="product-info">
-                    <h3>حساب ببجي ليفل 75 (ام فور ثلجي)</h3>
-                    <p class="product-desc">الحساب مشحون مواسم قديمة وفيه سكنات ميثك مميزة وصناديق مفتوحة.</p>
-                    <div class="product-meta">
-                        <span class="price">60$</span>
-                        <span class="status">متوفر</span>
-                    </div>
-                    <a href="https://wa.me/249900863926?text=أريد%20شراء%20حساب%20ببجي%20ثلجي" target="_blank" class="btn-buy">شراء عبر الواتساب 💬</a>
-                </div>
-            </div>
-
-            <div class="product-card" data-category="freefire">
-                <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=400" class="product-img">
-                <div class="product-info">
-                    <h3>حساب فري فاير سكنات قديمة</h3>
-                    <p class="product-desc">حساب ليفل 62 يحتوي على الفاير باص القديم والرقصات والأسلحة كاملة.</p>
-                    <div class="product-meta">
-                        <span class="price">30$</span>
-                        <span class="status">متوفر</span>
-                    </div>
-                    <a href="https://wa.me/249900863926?text=أريد%20شراء%20حساب%20فري%20فاير%20قديم" target="_blank" class="btn-buy">شراء عبر الواتساب 💬</a>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <script>
-        function showCategory(category) {
-            const cards = document.querySelectorAll('.product-card');
-            const title = document.getElementById('product-section-title');
-            
-            if(category === 'pubg') {
-                title.innerText = "حسابات ببجي موبايل";
-            } else if(category === 'freefire') {
-                title.innerText = "حسابات فري فاير";
-            } else {
-                title.innerText = "جميع الحسابات المتوفرة";
-            }
-
-            cards.forEach(card => {
-                if (category === 'all' || card.getAttribute('data-category') === category) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        }
-    </script>
-</body>
-</html>
+        .product-card
