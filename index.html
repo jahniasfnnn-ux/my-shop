@@ -202,4 +202,87 @@
         }
 
         .btn-add-cart {
-            background-color: var(--primary-
+            background-color: var(--primary-purple);
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="navbar">
+        <div class="nav-right">
+            <div class="nav-title">
+                <i class="fa-solid fa-gamepad"></i> my shop
+            </div>
+            <div class="nav-links">
+                <a href="#"><i class="fa-solid fa-bolt"></i> شحن الألعاب</a>
+                <a href="#" class="active"><i class="fa-solid fa-robot"></i> مساعد AI</a>
+            </div>
+        </div>
+        <div class="nav-left">
+            <div class="cart-icon">
+                <i class="fa-solid fa-shopping-cart"></i>
+                <span class="cart-badge">0</span>
+            </div>
+            <i class="fa-solid fa-gear"></i>
+        </div>
+    </div>
+
+    <div class="hero-section">
+        <h1 class="hero-title">أقوى حسابات الألعاب<br>بأفضل الأسعار</h1>
+        <p class="hero-subtitle">تسليم فوري، دعم متواصل، وضمان كامل على كافة الحسابات.</p>
+    </div>
+
+    <div class="filter-container">
+        <button class="filter-btn active">الكل</button>
+        <button class="filter-btn">FC</button>
+        <button class="filter-btn">Siege</button>
+        <button class="filter-btn">PUBG</button>
+        <button class="filter-btn">Free Fire</button>
+    </div>
+
+    <div class="products-grid">
+        
+        <div class="product-card">
+            <span class="badge-premium">مميز</span>
+            <h2 class="product-title">حساب FC Mobile أسطوري</h2>
+            <div class="product-price">$ 150</div>
+            <p class="product-desc">تشكيلة قوية مع لاعبين طاقات +100 وجاهز للمنافسة فوراً.</p>
+            <button class="btn-add-cart">
+                <i class="fa-solid fa-cart-plus"></i> إضافة للسلة
+            </button>
+        </div>
+
+        <div class="product-card">
+            <h2 class="product-title">حساب Rainbow Six Siege</h2>
+            <div class="product-price">$ 90</div>
+            <p class="product-desc">يحتوي على سكنات نادرة ورانك ممتاز جاهز للعب التنافسي.</p>
+            <button class="btn-add-cart">
+                <i class="fa-solid fa-cart-plus"></i> إضافة للسلة
+            </button>
+        </div>
+
+    </div>
+
+    <script>
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        filterButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelector('.filter-btn.active').classList.remove('active');
+                btn.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
